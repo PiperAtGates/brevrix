@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: brevrix/brevrix # Update with your real GitHub repo (e.g. username/repo)
+  repo: PiperAtGates/brevrix
   branch: main
 
 media_folder: "public/images/blog"
