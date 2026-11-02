@@ -14,8 +14,8 @@ export const faqsData: FaqItem[] = [
   },
   {
     id: "faq-2",
-    question: "How does hosting on Netlify or Cloudflare work, and what does it cost?",
-    answer: "Both Netlify and Cloudflare Pages are elite, modern hosting platforms with generous free tiers that can easily handle hundreds of thousands of monthly visitors for $0 in hosting fees! I configure the edge caching, custom domain, SSL certificates, and automated Git deployment so every time you or your team push code or content, the live site updates in seconds.",
+    question: "How does hosting on Cloudflare Pages work, and what does it cost?",
+    answer: "Cloudflare Pages is an elite global edge network with a generous free tier that handles hundreds of thousands of monthly visitors for $0 in hosting fees! We configure the global CDN edge caching, custom domain, automatic SSL certificates, and automated Git deployment so every time you push code or content to GitHub, your live site updates worldwide in seconds.",
     category: "Hosting"
   },
   {

@@ -70,10 +70,10 @@ export const projectsData: ProjectItem[] = [
     title: "Veloce Media – Edge CDN & Infrastructure",
     category: "DevOps & Cloud",
     tagline: "Zero-downtime global multi-region edge deployment for high-traffic media site.",
-    description: "Migrated legacy monolith to a distributed edge network using Cloudflare Pages, Netlify Functions, and automated GitHub Actions CI/CD pipelines.",
+    description: "Migrated legacy monolith to a distributed edge network using Cloudflare Pages, Cloudflare Workers, and automated GitHub Actions CI/CD pipelines.",
     metric: "100/100",
     metricLabel: "Lighthouse mobile performance score",
-    tech: ["Cloudflare Pages", "Netlify", "GitHub Actions", "Docker", "Wrangler", "Edge Caching"],
+    tech: ["Cloudflare Pages", "Cloudflare Workers", "GitHub Actions", "Docker", "Wrangler", "Edge Caching"],
     imageGradient: "from-amber-500 via-orange-600 to-red-700",
     features: [
       "Global asset caching with sub-30ms TTFB worldwide",
@@ -90,7 +90,7 @@ export const projectsData: ProjectItem[] = [
     description: "Engineered an ultra-fast headless storefront using Astro, Tailwind, and Shopify Storefront API. Boosted mobile conversion rates by 42% in the first 30 days.",
     metric: "+42%",
     metricLabel: "Increase in organic mobile conversions",
-    tech: ["Astro", "Tailwind CSS", "Shopify API", "TypeScript", "Netlify Edge"],
+    tech: ["Astro", "Tailwind CSS", "Shopify API", "TypeScript", "Cloudflare Pages"],
     imageGradient: "from-cyan-600 via-blue-600 to-indigo-800",
     features: [
       "Instant client-side predictive product search",

@@ -36,7 +36,7 @@ export const testimonialsData: TestimonialItem[] = [
     role: "CTO & VP Engineering",
     company: "HyperCloud Media",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
-    content: "We needed someone who understood modern Edge deployments on Cloudflare and Netlify at a deep level. Brivrix handled the migration seamlessly with zero downtime, and our global TTFB dropped under 40 milliseconds worldwide.",
+    content: "We needed someone who understood modern Edge deployments on Cloudflare Pages and Linux edge infrastructure at a deep level. Brevrix handled the migration seamlessly with zero downtime, and our global TTFB dropped under 40 milliseconds worldwide.",
     rating: 5,
     projectType: "DevOps & Edge Infrastructure"
   },

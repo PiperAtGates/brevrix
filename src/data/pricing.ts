@@ -27,7 +27,7 @@ export const pricingTiers: PricingTier[] = [
       "High-conversion Landing Page (Astro or Next.js)",
       "Pixel-perfect responsive design (Desktop + Mobile)",
       "Lighthouse 95+ score optimization",
-      "Cloudflare Pages or Netlify 1-click deployment",
+      "Cloudflare Pages 1-click deployment",
       "Direct Slack / Discord communication channel",
       "3-5 days rapid turnaround"
     ],
@@ -53,7 +53,7 @@ export const pricingTiers: PricingTier[] = [
       "Modern UI/UX Design System in Figma",
       "User Auth, Roles & Profile Management",
       "Stripe or LemonSqueezy payment integration",
-      "Cloudflare / Netlify production edge infrastructure",
+      "Cloudflare Pages production edge infrastructure",
       "Automated CI/CD build pipelines & staging links",
       "30 days post-launch warranty & bug fixes",
       "Comprehensive video walkthrough and codebase docs"
