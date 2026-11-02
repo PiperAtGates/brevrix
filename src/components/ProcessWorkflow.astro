@@ -1,0 +1,106 @@
+---
+import { Compass, Layers, Terminal, Rocket, CheckCircle2 } from '@lucide/astro';
+
+const steps = [
+  {
+    step: "01",
+    title: "Discovery & Scope Alignment",
+    tagline: "Clarity before code",
+    desc: "We analyze your business goals, target audience, technical requirements, and competitor landscape. We define clear deliverables, milestones, and fixed pricing with zero ambiguity.",
+    deliverables: ["Technical Scope Doc", "Wireframe Architecture", "Fixed Milestone Schedule"],
+    icon: Compass,
+    accent: "from-sky-500 to-blue-600"
+  },
+  {
+    step: "02",
+    title: "UI/UX & Design Systems",
+    tagline: "Form follows conversion",
+    desc: "Crafting interactive prototypes and a scalable Figma design system with tokens, states, and responsive viewports. You review and click through realistic flows before frontend development begins.",
+    deliverables: ["Interactive Figma Prototype", "Design Tokens & Typography", "Client Review & Signoff"],
+    icon: Layers,
+    accent: "from-indigo-500 to-purple-600"
+  },
+  {
+    step: "03",
+    title: "Sprint Engineering & Tests",
+    tagline: "Clean, modular code",
+    desc: "Building the product with modern Astro, TypeScript, and clean database models. You get access to a live private staging URL and a dedicated Slack channel with daily commits and progress demos.",
+    deliverables: ["Live Staging Preview URL", "Private Slack/Discord Sync", "Strict Automated Tests"],
+    icon: Terminal,
+    accent: "from-purple-500 to-pink-600"
+  },
+  {
+    step: "04",
+    title: "Edge Launch & 100% Handover",
+    tagline: "Zero downtime deployment",
+    desc: "Deploying to Cloudflare Pages or Netlify with global edge caching, SSL, and security headers. Complete GitHub repository ownership, environment keys, and 30-day warranty transferred to you.",
+    deliverables: ["Cloudflare/Netlify Edge Deploy", "100% Code & IP Transfer", "30-Day Post-Launch Warranty"],
+    icon: Rocket,
+    accent: "from-emerald-500 to-teal-600"
+  }
+];
+---
+
+<section class="py-20 relative overflow-hidden bg-slate-950/30 border-y border-white/5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-mono mb-4">
+        <span>The Proven Framework</span>
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        How We Go From Concept to Live Product
+      </h2>
+      <p class="text-slate-400 text-base sm:text-lg mt-4">
+        A transparent, battle-tested engineering sprint workflow designed to eliminate delays, prevent scope creep, and ship on time.
+      </p>
+    </div>
+
+    <!-- Steps Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {steps.map((item, idx) => {
+        const IconComponent = item.icon;
+        return (
+          <div class="glass-card rounded-2xl p-6 sm:p-7 border border-white/10 flex flex-col justify-between relative group hover:border-indigo-500/30 transition-all duration-300">
+            
+            <!-- Step Number Badge -->
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-3xl font-black font-mono text-slate-700 group-hover:text-indigo-400/80 transition-colors">
+                {item.step}
+              </span>
+              <div class={`w-11 h-11 rounded-xl bg-gradient-to-br ${item.accent} p-2 flex items-center justify-center text-white shadow-lg`}>
+                <IconComponent class="w-5 h-5" />
+              </div>
+            </div>
+
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-wider text-indigo-400 block mb-1">
+                {item.tagline}
+              </span>
+              <h3 class="text-lg font-bold text-white mb-3">
+                {item.title}
+              </h3>
+              <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                {item.desc}
+              </p>
+            </div>
+
+            <!-- Deliverables -->
+            <div class="pt-4 border-t border-white/5 space-y-2">
+              <span class="text-[10px] font-mono uppercase text-slate-500 block">Deliverables</span>
+              {item.deliverables.map((deliv) => (
+                <div class="flex items-center gap-2 text-[11px] text-slate-300">
+                  <CheckCircle2 class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                  <span>{deliv}</span>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>
+

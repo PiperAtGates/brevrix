@@ -1,0 +1,157 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  currentPath?: string;
+  articleDate?: string;
+  authorName?: string;
+  faqItems?: { question: string; answer: string }[];
+}
+
+const {
+  title = "Brevrix | Full-Stack Web, DevOps & Digital Growth Studio",
+  description = "Brevrix delivers ultra-fast Astro & WordPress websites, enterprise Kubernetes & CI/CD DevOps architecture, AI workflow automations, and data-driven digital marketing.",
+  ogImage = "/og-image.png",
+  currentPath = Astro.url.pathname,
+  articleDate,
+  authorName = "Brevrix Engineering Team",
+  faqItems = [],
+} = Astro.props;
+
+const siteUrl = 'https://brevrix.com';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || siteUrl);
+const fullOgImage = new URL(ogImage, siteUrl).toString();
+
+// Rich Entity Graph for Google & AI Search Engines (ChatGPT, Perplexity, Gemini)
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteUrl}/#organization`,
+      "name": "Brevrix",
+      "url": siteUrl,
+      "logo": `${siteUrl}/favicon.svg`,
+      "image": fullOgImage,
+      "description": description,
+      "priceRange": "$$",
+      "areaServed": "Worldwide",
+      "founders": [
+        {
+          "@type": "Person",
+          "name": "Md. Tanvir Ahmed",
+          "jobTitle": "Web Developer, Digital Marketer & Operations Lead"
+        },
+        {
+          "@type": "Person",
+          "name": "Sadia Afrin Lubna",
+          "jobTitle": "System & DevOps Engineer",
+          "sameAs": [
+            "https://www.linkedin.com/in/sadia-lubna/",
+            "https://github.com/sadia-lubna"
+          ]
+        }
+      ],
+      "knowsAbout": [
+        "Astro Web Development",
+        "WordPress Development",
+        "Kubernetes & Docker",
+        "CI/CD Pipelines (Jenkins, GitLab CI, ArgoCD)",
+        "Linux Server Administration",
+        "Database Management (PostgreSQL, MySQL, Redis, ClickHouse)",
+        "Digital Marketing & SEO",
+        "AI & Python Automation"
+      ]
+    },
+    ...(articleDate ? [{
+      "@type": "TechArticle",
+      "headline": title,
+      "description": description,
+      "image": fullOgImage,
+      "datePublished": articleDate,
+      "author": {
+        "@type": "Person",
+        "name": authorName
+      },
+      "publisher": {
+        "@id": `${siteUrl}/#organization`
+      },
+      "mainEntityOfPage": canonicalURL.toString()
+    }] : []),
+    ...(faqItems.length > 0 ? [{
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map(item => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
+    }] : [])
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={articleDate ? "article" : "website"} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImage} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={fullOgImage} />
+
+    <!-- Fonts preconnect and stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body class="bg-[#07080d] text-slate-100 min-h-screen flex flex-col relative selection:bg-indigo-500/30 selection:text-white">
+    
+    <!-- Background Ambient Lighting & Subtle Grid -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+      <div class="absolute inset-0 bg-grid-pattern opacity-40"></div>
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-radial-vignette opacity-70"></div>
+      <div class="ambient-glow -top-32 left-1/4 w-[500px] h-[500px] bg-sky-500/15 animate-pulse-subtle"></div>
+      <div class="ambient-glow top-40 right-10 w-[450px] h-[450px] bg-indigo-600/15 animate-pulse-subtle"></div>
+    </div>
+
+    <Navbar currentPath={currentPath} />
+
+    <main class="flex-grow relative z-10 pt-24">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

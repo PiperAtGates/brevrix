@@ -1,0 +1,22 @@
+# Brevrix (https://brevrix.com)
+
+> Brevrix is a Full-Stack Web Engineering, Enterprise DevOps, and Digital Growth Studio based in Bangladesh, serving clients worldwide.
+
+## Core Expertise & Services
+- **DevOps & Cloud Infrastructure**: Linux (Ubuntu, CentOS, RHEL), Kubernetes (k8s, k3s, k0s, Helm), Docker, CI/CD (Jenkins, GitLab CI, ArgoCD, GitOps, Trivy), Kong API Gateway, Harbor, Keycloak IAM.
+- **Database & Messaging**: PostgreSQL, MySQL, Redis, ClickHouse, Apache Kafka, RabbitMQ.
+- **Web Development**: Ultra-fast Astro static websites, WordPress development, HTML/CSS, Tailwind CSS, Cloudflare Pages edge deployment.
+- **AI & Automation**: Python, YOLOv5/OpenCV computer vision, n8n workflow automation.
+- **Digital Marketing & Business Ops**: Technical SEO, Generative Engine Optimization (GEO), Email Marketing, Financial Record Keeping & Project Coordination.
+
+## Key Team Members
+- **Md. Tanvir Ahmed**: Co-Founder, Web Developer, Digital Marketer & Financial Operations Lead (BBA Honours in Accounting).
+- **Sadia Afrin Lubna**: Co-Founder & System/DevOps Engineer (BSc in CSE, experienced in Enterprise Linux, Kubernetes, ArgoCD, and Machine Learning).
+
+## Important URLs
+- Services: https://brevrix.com/services
+- Portfolio / Work: https://brevrix.com/work
+- Pricing & Estimator: https://brevrix.com/pricing
+- Technical Blog: https://brevrix.com/blog
+- Contact: https://brevrix.com/contact
+

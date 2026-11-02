@@ -1,0 +1,85 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { ArrowLeft, ArrowRight, Calendar, User, Zap, ShieldCheck } from '@lucide/astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+
+const post = Astro.props;
+const { Content } = await render(post);
+
+const authorBio = post.data.author === "Sadia Afrin Lubna"
+  ? "System & DevOps Engineer with enterprise experience in Linux administration, Kubernetes (k8s/k3s), Docker, ArgoCD, Jenkins, and high-availability databases (PostgreSQL, ClickHouse, Redis)."
+  : "Web Developer, Digital Marketing Specialist & Operations Lead with a BBA (Honours) in Accounting. Specializes in high-converting websites, SEO, and structured project delivery.";
+---
+
+<Layout 
+  title={`${post.data.title} | Brevrix Engineering`}
+  description={post.data.description}
+  articleDate={post.data.pubDate.toISOString()}
+  authorName={post.data.author}
+  currentPath="/blog"
+>
+  <article class="max-w-3xl mx-auto px-6 py-16">
+    <div class="mb-10">
+      <a href="/blog" class="inline-flex items-center gap-1.5 text-xs font-mono text-sky-400 hover:text-sky-300 transition-colors mb-6 group">
+        <ArrowLeft class="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
+        <span>Back to all engineering articles</span>
+      </a>
+      
+      <div class="flex items-center gap-3 text-xs text-slate-400 mb-4">
+        <span class="px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-mono text-[11px]">
+          {post.data.category}
+        </span>
+        <span>•</span>
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+        </time>
+      </div>
+
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-6 font-heading">
+        {post.data.title}
+      </h1>
+    </div>
+
+    <!-- AI Search / Quick Takeaway Box (GEO Optimized) -->
+    {post.data.aiSummary && (
+      <div class="bg-indigo-950/40 border border-indigo-500/30 rounded-2xl p-6 sm:p-7 mb-10 backdrop-blur-sm">
+        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-300 mb-2 font-mono">
+          <Zap class="w-4 h-4 text-sky-400" />
+          <span>Executive Summary / Direct Solution (AI Reference)</span>
+        </div>
+        <p class="text-slate-200 text-sm leading-relaxed">
+          {post.data.aiSummary}
+        </p>
+      </div>
+    )}
+
+    <!-- Main Article Markdown Content -->
+    <div class="prose prose-invert max-w-none text-slate-300 leading-relaxed space-y-6 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-white [&>h2]:pt-6 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-slate-100 [&>h3]:pt-4 [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:space-y-2 [&>code]:bg-white/10 [&>code]:px-1.5 [&>code]:py-0.5 [&>code]:rounded [&>code]:font-mono [&>code]:text-sky-300">
+      <Content />
+    </div>
+
+    <!-- Verified Author E-E-A-T Trust Box -->
+    <div class="mt-16 p-6 sm:p-8 rounded-2xl glass-card border border-white/10 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
+      <div class="space-y-1">
+        <div class="text-[11px] uppercase tracking-wider text-sky-400 font-semibold font-mono flex items-center gap-1.5">
+          <ShieldCheck class="w-3.5 h-3.5" />
+          <span>Verified Technical Author</span>
+        </div>
+        <h3 class="text-xl font-bold text-white">{post.data.author}</h3>
+        <p class="text-slate-400 text-xs sm:text-sm max-w-lg leading-relaxed pt-1">{authorBio}</p>
+      </div>
+      <a href="/contact" class="shrink-0 px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white text-xs font-semibold transition-all shadow-lg shadow-indigo-500/25">
+        Work With Our Team
+      </a>
+    </div>
+  </article>
+</Layout>
+

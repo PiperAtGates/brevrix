@@ -1,0 +1,94 @@
+---
+import type { ProjectItem } from '../data/projects';
+import { ArrowUpRight, CheckCircle2, TrendingUp } from '@lucide/astro';
+
+interface Props {
+  project: ProjectItem;
+}
+
+const { project } = Astro.props;
+---
+
+<div class="glass-card glass-card-hover rounded-2xl border border-white/10 overflow-hidden flex flex-col justify-between group">
+  
+  <!-- Browser / Mockup Top Bar -->
+  <div class="bg-black/40 px-4 py-2.5 border-b border-white/5 flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+      <span class="ml-2 text-[11px] text-slate-500 font-mono hidden sm:inline">brivrix.case-study/{project.id}</span>
+    </div>
+
+    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/5">
+      {project.category}
+    </span>
+  </div>
+
+  <!-- Visual Hero / Gradient Display -->
+  <div class={`h-44 sm:h-48 bg-gradient-to-br ${project.imageGradient} p-6 flex flex-col justify-between relative overflow-hidden group-hover:brightness-105 transition-all duration-300`}>
+    <div class="absolute inset-0 bg-black/25 backdrop-blur-[2px]"></div>
+
+    <!-- Floating Metric Pill -->
+    <div class="relative z-10 flex items-center justify-between">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 border border-white/15 text-xs text-white backdrop-blur-md">
+        <TrendingUp class="w-3.5 h-3.5 text-emerald-400" />
+        <span class="font-bold">{project.metric}</span>
+        <span class="text-slate-300 text-[11px] hidden sm:inline">{project.metricLabel}</span>
+      </div>
+
+      <div class="w-8 h-8 rounded-full bg-black/40 border border-white/20 flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-white/20 transition-all">
+        <ArrowUpRight class="w-4 h-4" />
+      </div>
+    </div>
+
+    <!-- Project Tagline overlay -->
+    <div class="relative z-10">
+      <h4 class="text-xl sm:text-2xl font-black text-white tracking-tight drop-shadow-md">
+        {project.title}
+      </h4>
+    </div>
+  </div>
+
+  <!-- Content Body -->
+  <div class="p-6 flex-1 flex flex-col justify-between">
+    <div>
+      <p class="text-xs text-indigo-300 font-mono mb-2">{project.tagline}</p>
+      <p class="text-sm text-slate-400 leading-relaxed mb-4">
+        {project.description}
+      </p>
+
+      <!-- Key Features List -->
+      <ul class="space-y-1.5 mb-5">
+        {project.features.slice(0, 3).map((feature) => (
+          <li class="flex items-center gap-2 text-xs text-slate-300">
+            <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Tech Stack Pills & CTA -->
+    <div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex flex-wrap gap-1.5">
+        {project.tech.map((t) => (
+          <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-slate-400 border border-white/5">
+            {t}
+          </span>
+        ))}
+      </div>
+
+      <a
+        href={`/contact?subject=${encodeURIComponent('Inquiry regarding ' + project.title)}`}
+        class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold inline-flex items-center gap-1 group/btn"
+      >
+        <span>Build Similar</span>
+        <ArrowUpRight class="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+      </a>
+    </div>
+
+  </div>
+
+</div>
+

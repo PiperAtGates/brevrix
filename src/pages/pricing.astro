@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PricingSection from '../components/PricingSection.astro';
+import ProjectEstimator from '../components/ProjectEstimator.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { DollarSign, ShieldCheck, Clock, CreditCard, Sparkles } from '@lucide/astro';
+---
+
+<Layout
+  title="Predictable Pricing & Packages | Brevrix Engineering Studio"
+  description="Transparent, fixed-price project sprints and monthly retainer packages for DevOps, Kubernetes, Astro/WordPress web development, and digital marketing."
+  currentPath="/pricing"
+>
+  <!-- Page Header -->
+  <section class="py-16 md:py-24 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-4xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-4">
+        <Sparkles class="w-3.5 h-3.5" />
+        <span>Transparent & Predictable Investment</span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+        Zero Ambiguity. Just Exceptional Results.
+      </h1>
+      <p class="text-slate-400 text-lg sm:text-xl mt-4 leading-relaxed">
+        Choose between sprint-based milestone deliverables or dedicated monthly engineering capacity. Every plan comes with our 30-day warranty and full IP transfer.
+      </p>
+
+      <!-- Trust Badges -->
+      <div class="flex flex-wrap items-center justify-center gap-6 pt-8 text-xs text-slate-300">
+        <div class="flex items-center gap-2">
+          <ShieldCheck class="w-4 h-4 text-emerald-400" />
+          <span>Milestone-based Escrow Friendly</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Clock class="w-4 h-4 text-sky-400" />
+          <span>Guaranteed Delivery Deadlines</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <CreditCard class="w-4 h-4 text-purple-400" />
+          <span>Stripe / Wire / Crypto Accepted</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Cards -->
+  <PricingSection />
+
+  <!-- Interactive Project Cost Calculator -->
+  <ProjectEstimator />
+
+  <!-- FAQ Section -->
+  <FaqAccordion />
+
+  <!-- Bottom CTA -->
+  <CtaBanner />
+</Layout>
+

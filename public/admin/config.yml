@@ -1,0 +1,24 @@
+backend:
+  name: github
+  repo: brevrix/brevrix # Update with your real GitHub repo (e.g. username/repo)
+  branch: main
+
+media_folder: "public/images/blog"
+public_folder: "/images/blog"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description (SEO & AI Summary)", name: "description", widget: "text" }
+      - { label: "Direct Answer / Key Takeaway (For AI Citations)", name: "aiSummary", widget: "text" }
+      - { label: "Publish Date", name: "pubDate", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "select", options: ["Md. Tanvir Ahmed", "Sadia Afrin Lubna"], default: "Sadia Afrin Lubna" }
+      - { label: "Category", name: "category", widget: "select", options: ["DevOps & Kubernetes", "Linux & Servers", "Web Development", "Digital Marketing & SEO", "AI & Automation"] }
+      - { label: "Featured Image", name: "heroImage", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+

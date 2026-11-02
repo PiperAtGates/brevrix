@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { projectsData } from '../data/projects';
+import { Layers, Sparkles, Filter, CheckCircle2 } from '@lucide/astro';
+
+const categories = ["All", "Web & SaaS", "UI/UX Design", "AI & Automation", "DevOps & Cloud"];
+---
+
+<Layout
+  title="Portfolio & Production Case Studies | Brevrix"
+  description="Explore production case studies: Kubernetes clusters, Astro web platforms, AI vision pipelines, and Cloudflare edge deployments."
+  currentPath="/work"
+>
+  <!-- Header -->
+  <section class="py-16 md:py-24 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-4xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono mb-4">
+        <Sparkles class="w-3.5 h-3.5" />
+        <span>Selected Works & Case Studies</span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+        High-Impact Digital Solutions In Production
+      </h1>
+      <p class="text-slate-400 text-lg sm:text-xl mt-4 leading-relaxed">
+        A curated showcase of real-world client platforms, design systems, and cloud architectures built for speed, scalability, and conversion.
+      </p>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap items-center justify-center gap-2 pt-8" id="category-filters">
+        {categories.map((cat, idx) => (
+          <button
+            type="button"
+            data-category={cat}
+            class={`category-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${
+              idx === 0
+                ? 'active bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
+                : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/5'
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="pb-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+        {projectsData.map((project) => (
+          <div class="project-item" data-project-category={project.category}>
+            <ProjectCard project={project} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <CtaBanner />
+</Layout>
+
+<script>
+  function setupWorkFilter() {
+    const filterButtons = document.querySelectorAll('.category-filter-btn');
+    const projectItems = document.querySelectorAll<HTMLElement>('.project-item');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle active style
+        filterButtons.forEach(b => {
+          b.classList.remove('active', 'bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/30');
+          b.classList.add('bg-white/5', 'text-slate-300');
+        });
+        btn.classList.add('active', 'bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/30');
+        btn.classList.remove('bg-white/5', 'text-slate-300');
+
+        const selectedCategory = btn.getAttribute('data-category');
+
+        projectItems.forEach(item => {
+          const itemCat = item.getAttribute('data-project-category');
+          if (selectedCategory === 'All' || selectedCategory === itemCat) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  setupWorkFilter();
+  document.addEventListener('astro:page-load', setupWorkFilter);
+</script>
+

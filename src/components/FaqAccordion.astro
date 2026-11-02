@@ -1,0 +1,84 @@
+---
+import { faqsData } from '../data/faq';
+import { ChevronDown, HelpCircle } from '@lucide/astro';
+---
+
+<section class="py-20 relative overflow-hidden">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-mono mb-4">
+        <HelpCircle class="w-3.5 h-3.5" />
+        <span>Answers & Clarifications</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base mt-3">
+        Everything you need to know about working with Brivrix, ownership, payments, and deployment.
+      </p>
+    </div>
+
+    <!-- FAQ Accordion List -->
+    <div class="space-y-4" id="faq-container">
+      {faqsData.map((item, index) => (
+        <div class="glass-card rounded-2xl border border-white/10 overflow-hidden transition-colors">
+          <button
+            type="button"
+            class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+            aria-expanded={index === 0 ? "true" : "false"}
+            data-target={`faq-content-${item.id}`}
+          >
+            <span class="text-base font-semibold text-white">
+              {item.question}
+            </span>
+            <div class="faq-icon-wrapper p-1 rounded-full bg-white/5 text-slate-400 transition-transform duration-200">
+              <ChevronDown class="w-4 h-4 transition-transform duration-200" />
+            </div>
+          </button>
+
+          <div
+            id={`faq-content-${item.id}`}
+            class={`faq-content px-6 transition-all duration-300 overflow-hidden ${index === 0 ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 pb-0 opacity-0'}`}
+          >
+            <p class="text-sm text-slate-300 leading-relaxed pt-1 border-t border-white/5">
+              {item.answer}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function setupFaq() {
+    const triggers = document.querySelectorAll('.faq-trigger');
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        const targetId = trigger.getAttribute('data-target');
+        const content = document.getElementById(targetId || '');
+        const icon = trigger.querySelector('.faq-icon-wrapper svg');
+
+        // Toggle state
+        if (isExpanded) {
+          trigger.setAttribute('aria-expanded', 'false');
+          content?.classList.remove('max-h-96', 'pb-5', 'opacity-100');
+          content?.classList.add('max-h-0', 'pb-0', 'opacity-0');
+          icon?.classList.remove('rotate-180');
+        } else {
+          trigger.setAttribute('aria-expanded', 'true');
+          content?.classList.remove('max-h-0', 'pb-0', 'opacity-0');
+          content?.classList.add('max-h-96', 'pb-5', 'opacity-100');
+          icon?.classList.add('rotate-180');
+        }
+      });
+    });
+  }
+
+  setupFaq();
+  document.addEventListener('astro:page-load', setupFaq);
+</script>
+

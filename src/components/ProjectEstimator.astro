@@ -1,0 +1,402 @@
+---
+import { Calculator, Sparkles, Check, ArrowRight, Zap, Clock, DollarSign } from '@lucide/astro';
+---
+
+<section id="estimator" class="py-20 relative overflow-hidden">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-mono mb-4">
+        <Calculator class="w-3.5 h-3.5" />
+        <span>Transparent Project Scoper</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Interactive Cost & Timeline Estimator
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base mt-3">
+        Select your project parameters below to get an instant, realistic budget range and delivery roadmap. No waiting days for a proposal.
+      </p>
+    </div>
+
+    <!-- Estimator Container Card -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10 shadow-2xl relative">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Left: Options Selection (Span 2) -->
+        <div class="lg:col-span-2 space-y-8">
+          
+          <!-- Step 1: Project Type -->
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+              1. Select Project Type
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="type-selector">
+              <button
+                type="button"
+                data-type="devops"
+                data-price="650"
+                data-days="5"
+                class="estimator-btn active text-left p-3.5 rounded-xl border border-white/10 hover:border-indigo-500/40 bg-white/[0.03] transition-all"
+              >
+                <div class="text-xs font-semibold text-white">Kubernetes & DevOps</div>
+                <div class="text-[11px] text-slate-400 mt-1">k8s, Docker, CI/CD, ArgoCD</div>
+              </button>
+
+              <button
+                type="button"
+                data-type="web"
+                data-price="450"
+                data-days="7"
+                class="estimator-btn text-left p-3.5 rounded-xl border border-white/10 hover:border-indigo-500/40 bg-white/[0.03] transition-all"
+              >
+                <div class="text-xs font-semibold text-white">Astro / WordPress Web</div>
+                <div class="text-[11px] text-slate-400 mt-1">100/100 speed, responsive UI</div>
+              </button>
+
+              <button
+                type="button"
+                data-type="db"
+                data-price="500"
+                data-days="4"
+                class="estimator-btn text-left p-3.5 rounded-xl border border-white/10 hover:border-indigo-500/40 bg-white/[0.03] transition-all"
+              >
+                <div class="text-xs font-semibold text-white">Database & Caching</div>
+                <div class="text-[11px] text-slate-400 mt-1">Postgres, Redis, ClickHouse</div>
+              </button>
+
+              <button
+                type="button"
+                data-type="ai"
+                data-price="800"
+                data-days="10"
+                class="estimator-btn text-left p-3.5 rounded-xl border border-white/10 hover:border-indigo-500/40 bg-white/[0.03] transition-all"
+              >
+                <div class="text-xs font-semibold text-white">AI & Python Automation</div>
+                <div class="text-[11px] text-slate-400 mt-1">YOLO/OpenCV, n8n, workflows</div>
+              </button>
+
+              <button
+                type="button"
+                data-type="seo"
+                data-price="350"
+                data-days="4"
+                class="estimator-btn text-left p-3.5 rounded-xl border border-white/10 hover:border-indigo-500/40 bg-white/[0.03] transition-all"
+              >
+                <div class="text-xs font-semibold text-white">Technical SEO & GEO</div>
+                <div class="text-[11px] text-slate-400 mt-1">Core Web Vitals, AI search</div>
+              </button>
+
+              <button
+                type="button"
+                data-type="ops"
+                data-price="250"
+                data-days="3"
+                class="estimator-btn text-left p-3.5 rounded-xl border border-white/10 hover:border-indigo-500/40 bg-white/[0.03] transition-all"
+              >
+                <div class="text-xs font-semibold text-white">Business Ops & Docs</div>
+                <div class="text-[11px] text-slate-400 mt-1">Financial records, spreadsheets</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Scope Scale -->
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+              2. Scope & Screen Complexity
+            </label>
+            <div class="grid grid-cols-3 gap-3" id="scope-selector">
+              <button
+                type="button"
+                data-scope="starter"
+                data-price="0"
+                data-days="0"
+                class="scope-btn active text-center p-3 rounded-xl border border-white/10 bg-white/[0.03] transition-all"
+              >
+                <span class="text-xs font-semibold text-white block">Starter</span>
+                <span class="text-[10px] text-slate-400">1 - 3 Core Views</span>
+              </button>
+
+              <button
+                type="button"
+                data-scope="growth"
+                data-price="850"
+                data-days="4"
+                class="scope-btn text-center p-3 rounded-xl border border-white/10 bg-white/[0.03] transition-all"
+              >
+                <span class="text-xs font-semibold text-white block">Growth</span>
+                <span class="text-[10px] text-slate-400">4 - 8 Views (+$850)</span>
+              </button>
+
+              <button
+                type="button"
+                data-scope="pro"
+                data-price="1700"
+                data-days="8"
+                class="scope-btn text-center p-3 rounded-xl border border-white/10 bg-white/[0.03] transition-all"
+              >
+                <span class="text-xs font-semibold text-white block">Enterprise</span>
+                <span class="text-[10px] text-slate-400">9+ Views (+$1,700)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Add-on Capabilities -->
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+              3. Specialized Add-ons
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="addons-selector">
+              <label class="addon-label flex items-center justify-between p-3 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] cursor-pointer transition-all">
+                <div class="flex items-center gap-2.5">
+                  <input type="checkbox" data-addon="auth" data-price="450" data-days="2" class="rounded border-slate-700 bg-slate-900 text-indigo-500 focus:ring-0" />
+                  <span class="text-xs text-slate-200">User Auth & RBAC Permissions</span>
+                </div>
+                <span class="text-[11px] font-mono text-slate-400">+$450</span>
+              </label>
+
+              <label class="addon-label flex items-center justify-between p-3 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] cursor-pointer transition-all">
+                <div class="flex items-center gap-2.5">
+                  <input type="checkbox" data-addon="payments" data-price="550" data-days="2" class="rounded border-slate-700 bg-slate-900 text-indigo-500 focus:ring-0" />
+                  <span class="text-xs text-slate-200">Stripe / LemonSqueezy Billing</span>
+                </div>
+                <span class="text-[11px] font-mono text-slate-400">+$550</span>
+              </label>
+
+              <label class="addon-label flex items-center justify-between p-3 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] cursor-pointer transition-all">
+                <div class="flex items-center gap-2.5">
+                  <input type="checkbox" data-addon="ai" data-price="850" data-days="4" class="rounded border-slate-700 bg-slate-900 text-indigo-500 focus:ring-0" />
+                  <span class="text-xs text-slate-200">Custom LLM Agent Integration</span>
+                </div>
+                <span class="text-[11px] font-mono text-slate-400">+$850</span>
+              </label>
+
+              <label class="addon-label flex items-center justify-between p-3 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] cursor-pointer transition-all">
+                <div class="flex items-center gap-2.5">
+                  <input type="checkbox" data-addon="cms" data-price="400" data-days="2" class="rounded border-slate-700 bg-slate-900 text-indigo-500 focus:ring-0" />
+                  <span class="text-xs text-slate-200">Headless CMS / Markdown Blog</span>
+                </div>
+                <span class="text-[11px] font-mono text-slate-400">+$400</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Step 4: Speed preference -->
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
+              4. Delivery Pace
+            </label>
+            <div class="flex items-center gap-4">
+              <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
+                <input type="radio" name="speed" value="standard" checked class="text-indigo-500 focus:ring-0 bg-slate-900" />
+                <span>Standard Delivery (Best Value)</span>
+              </label>
+              <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
+                <input type="radio" name="speed" value="rush" class="text-indigo-500 focus:ring-0 bg-slate-900" />
+                <span class="text-amber-400 font-medium">Rush Sprint (35% faster)</span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Real-time Live Summary (Span 1) -->
+        <div class="bg-gradient-to-b from-indigo-950/40 to-slate-900/60 rounded-2xl p-6 border border-indigo-500/20 flex flex-col justify-between">
+          
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+              <span class="text-xs font-mono uppercase tracking-wider text-indigo-300">Live Estimate</span>
+              <span class="flex items-center gap-1 text-[11px] text-emerald-400">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Instant Scoped
+              </span>
+            </div>
+
+            <!-- Price Output -->
+            <div class="py-6">
+              <div class="text-xs text-slate-400 mb-1">Estimated Budget</div>
+              <div class="text-3xl sm:text-4xl font-black text-white font-heading" id="est-price">
+                $1,200 - $1,500
+              </div>
+              <p class="text-[11px] text-slate-500 mt-1">Fixed-price milestone contract, no surprise invoices.</p>
+            </div>
+
+            <!-- Timeline Output -->
+            <div class="pb-6 border-b border-white/10 space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-slate-400 flex items-center gap-1.5">
+                  <Clock class="w-3.5 h-3.5 text-sky-400" />
+                  Estimated Turnaround:
+                </span>
+                <span class="font-bold text-white" id="est-timeline">4 - 6 Business Days</span>
+              </div>
+
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-slate-400 flex items-center gap-1.5">
+                  <Zap class="w-3.5 h-3.5 text-amber-400" />
+                  Hosting Target:
+                </span>
+                <span class="font-medium text-slate-200">Netlify or Cloudflare Pages</span>
+              </div>
+            </div>
+
+            <!-- Inclusions Checklist -->
+            <div class="py-4 space-y-2">
+              <div class="flex items-center gap-2 text-xs text-slate-300">
+                <Check class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                <span>100% Code & IP ownership transferred</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs text-slate-300">
+                <Check class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                <span>30-Day post-launch warranty included</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs text-slate-300">
+                <Check class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                <span>Direct private Slack / Discord updates</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action Button -->
+          <div class="pt-6">
+            <a
+              id="request-quote-btn"
+              href="/contact?type=landing&budget=1200"
+              class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 hover:from-sky-400 hover:to-purple-500 text-white font-semibold text-sm transition-all duration-300 shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-2 group"
+            >
+              <span>Lock In This Estimate</span>
+              <ArrowRight class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <p class="text-[11px] text-center text-slate-400 mt-2">Zero commitment • Response in &lt; 2 hrs</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .estimator-btn.active {
+    background-color: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.6);
+    box-shadow: 0 0 15px -3px rgba(99, 102, 241, 0.3);
+  }
+  .scope-btn.active {
+    background-color: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.6);
+  }
+</style>
+
+<script>
+  // Dynamic client-side calculation script
+  function setupEstimator() {
+    let basePrice = 650;
+    let baseDays = 5;
+    let selectedType = 'devops';
+    let scopePrice = 0;
+    let scopeDays = 0;
+    let selectedScope = 'starter';
+    let addonsPrice = 0;
+    let addonsDays = 0;
+    let isRush = false;
+
+    const priceEl = document.getElementById('est-price');
+    const timelineEl = document.getElementById('est-timeline');
+    const requestBtn = document.getElementById('request-quote-btn');
+
+    function updateCalculations() {
+      let subtotal = basePrice + scopePrice + addonsPrice;
+      let totalDays = baseDays + scopeDays + addonsDays;
+
+      if (isRush) {
+        subtotal = Math.round(subtotal * 1.25);
+        totalDays = Math.max(3, Math.round(totalDays * 0.65));
+      }
+
+      const lowBound = subtotal;
+      const highBound = Math.round(subtotal * 1.2);
+
+      if (priceEl) {
+        priceEl.textContent = `$${lowBound.toLocaleString()} - $${highBound.toLocaleString()}`;
+      }
+
+      if (timelineEl) {
+        timelineEl.textContent = `${totalDays} - ${totalDays + 3} Business Days`;
+      }
+
+      if (requestBtn) {
+        const query = new URLSearchParams({
+          type: selectedType,
+          scope: selectedScope,
+          estPrice: `$${lowBound}-$${highBound}`,
+          estDays: `${totalDays} days`,
+          rush: isRush ? 'yes' : 'no'
+        });
+        requestBtn.setAttribute('href', `/contact?${query.toString()}`);
+      }
+    }
+
+    // Type buttons
+    const typeButtons = document.querySelectorAll('.estimator-btn');
+    typeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        typeButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        basePrice = parseInt(btn.getAttribute('data-price') || '1200', 10);
+        baseDays = parseInt(btn.getAttribute('data-days') || '4', 10);
+        selectedType = btn.getAttribute('data-type') || 'landing';
+        updateCalculations();
+      });
+    });
+
+    // Scope buttons
+    const scopeButtons = document.querySelectorAll('.scope-btn');
+    scopeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        scopeButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        scopePrice = parseInt(btn.getAttribute('data-price') || '0', 10);
+        scopeDays = parseInt(btn.getAttribute('data-days') || '0', 10);
+        selectedScope = btn.getAttribute('data-scope') || 'starter';
+        updateCalculations();
+      });
+    });
+
+    // Addon checkboxes
+    const addonCheckboxes = document.querySelectorAll<HTMLInputElement>('#addons-selector input[type="checkbox"]');
+    addonCheckboxes.forEach(chk => {
+      chk.addEventListener('change', () => {
+        addonsPrice = 0;
+        addonsDays = 0;
+        addonCheckboxes.forEach(item => {
+          if (item.checked) {
+            addonsPrice += parseInt(item.getAttribute('data-price') || '0', 10);
+            addonsDays += parseInt(item.getAttribute('data-days') || '0', 10);
+          }
+        });
+        updateCalculations();
+      });
+    });
+
+    // Speed radio
+    const speedRadios = document.querySelectorAll<HTMLInputElement>('input[name="speed"]');
+    speedRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        isRush = radio.value === 'rush';
+        updateCalculations();
+      });
+    });
+
+    // Initial run
+    updateCalculations();
+  }
+
+  // Setup on page load & Astro view transitions if used
+  setupEstimator();
+  document.addEventListener('astro:page-load', setupEstimator);
+</script>
+

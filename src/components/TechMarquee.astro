@@ -1,0 +1,60 @@
+---
+const technologies = [
+  { name: 'Astro', category: 'Web Framework', highlight: true },
+  { name: 'Kubernetes (k8s/k3s)', category: 'Cloud & Orchestration', highlight: true },
+  { name: 'Docker', category: 'Containers', highlight: true },
+  { name: 'ArgoCD & GitOps', category: 'CI/CD & Deploy', highlight: true },
+  { name: 'Jenkins & GitLab CI', category: 'Automation', highlight: true },
+  { name: 'Linux (Ubuntu/RHEL)', category: 'Systems' },
+  { name: 'WordPress', category: 'CMS Engineering' },
+  { name: 'Cloudflare Pages', category: 'Edge CDN', highlight: true },
+  { name: 'PostgreSQL & MySQL', category: 'Databases' },
+  { name: 'ClickHouse & Redis', category: 'Data & Caching' },
+  { name: 'Python & YOLO', category: 'AI & Vision' },
+  { name: 'Tailwind CSS', category: 'Styling' },
+  { name: 'TypeScript', category: 'Language' },
+  { name: 'Technical SEO (GEO)', category: 'Growth' },
+];
+---
+
+<section class="py-10 border-y border-white/5 bg-slate-950/40 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 mb-4 text-center">
+    <p class="text-xs uppercase tracking-widest text-slate-400 font-mono">
+      Production-tested with industry-leading modern technologies
+    </p>
+  </div>
+
+  <div class="relative flex overflow-x-hidden mask-gradient">
+    <!-- Left & Right Fade Gradients -->
+    <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#07080d] to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#07080d] to-transparent z-10 pointer-events-none"></div>
+
+    <!-- Double list for infinite marquee -->
+    <div class="animate-marquee flex items-center gap-6 py-2">
+      {technologies.map((tech) => (
+        <div class={`flex items-center gap-2.5 px-4 py-2 rounded-xl border backdrop-blur-sm transition-all duration-200 hover:scale-105 ${
+          tech.highlight 
+            ? 'bg-indigo-500/10 border-indigo-500/30 text-white font-medium shadow-sm shadow-indigo-500/10' 
+            : 'bg-white/[0.03] border-white/5 text-slate-300'
+        }`}>
+          <span class="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-sky-400 to-indigo-500"></span>
+          <span class="text-sm font-semibold tracking-tight">{tech.name}</span>
+          <span class="text-[10px] text-slate-400 uppercase font-mono px-1.5 py-0.5 rounded bg-white/5">{tech.category}</span>
+        </div>
+      ))}
+      
+      {/* Duplicate for seamless looping */}
+      {technologies.map((tech) => (
+        <div class={`flex items-center gap-2.5 px-4 py-2 rounded-xl border backdrop-blur-sm transition-all duration-200 hover:scale-105 ${
+          tech.highlight 
+            ? 'bg-indigo-500/10 border-indigo-500/30 text-white font-medium shadow-sm shadow-indigo-500/10' 
+            : 'bg-white/[0.03] border-white/5 text-slate-300'
+        }`}>
+          <span class="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-sky-400 to-indigo-500"></span>
+          <span class="text-sm font-semibold tracking-tight">{tech.name}</span>
+          <span class="text-[10px] text-slate-400 uppercase font-mono px-1.5 py-0.5 rounded bg-white/5">{tech.category}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

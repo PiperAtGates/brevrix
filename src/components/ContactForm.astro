@@ -1,0 +1,245 @@
+---
+import { Send, CheckCircle2, Mail, Calendar, MessageSquare, ArrowRight, ShieldCheck } from '@lucide/astro';
+
+interface Props {
+  preselectedService?: string;
+  preselectedTier?: string;
+}
+
+const { preselectedService = '', preselectedTier = '' } = Astro.props;
+---
+
+<div class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10 shadow-2xl relative">
+  <form id="project-contact-form" class="space-y-6">
+    
+    <!-- Success Banner (hidden by default) -->
+    <div id="form-success-message" class="hidden p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">
+      <div class="flex items-center gap-3">
+        <CheckCircle2 class="w-6 h-6 text-emerald-400 flex-shrink-0" />
+        <div>
+          <h4 class="font-bold text-white text-base">Inquiry Received Successfully!</h4>
+          <p class="text-xs text-emerald-200 mt-1">
+            Thank you for reaching out. I personally review every inquiry and will respond within 2 to 4 business hours with initial thoughts and next steps.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Name & Email Row -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div>
+        <label for="client-name" class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+          Your Name <span class="text-rose-400">*</span>
+        </label>
+        <input
+          type="text"
+          id="client-name"
+          name="name"
+          required
+          placeholder="Jane Doe"
+          class="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 focus:border-indigo-500 focus:bg-white/[0.07] text-white placeholder-slate-500 text-sm focus:outline-none transition-colors"
+        />
+      </div>
+
+      <div>
+        <label for="client-email" class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+          Work Email <span class="text-rose-400">*</span>
+        </label>
+        <input
+          type="email"
+          id="client-email"
+          name="email"
+          required
+          placeholder="jane@company.com"
+          class="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 focus:border-indigo-500 focus:bg-white/[0.07] text-white placeholder-slate-500 text-sm focus:outline-none transition-colors"
+        />
+      </div>
+    </div>
+
+    <!-- Company & Communication Handle Row -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div>
+        <label for="client-company" class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+          Company or Project Name
+        </label>
+        <input
+          type="text"
+          id="client-company"
+          name="company"
+          placeholder="Acme Inc. / Stealth Startup"
+          class="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 focus:border-indigo-500 focus:bg-white/[0.07] text-white placeholder-slate-500 text-sm focus:outline-none transition-colors"
+        />
+      </div>
+
+      <div>
+        <label for="client-handle" class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+          Slack / Discord / Telegram (Optional)
+        </label>
+        <input
+          type="text"
+          id="client-handle"
+          name="handle"
+          placeholder="@janedoe"
+          class="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 focus:border-indigo-500 focus:bg-white/[0.07] text-white placeholder-slate-500 text-sm focus:outline-none transition-colors"
+        />
+      </div>
+    </div>
+
+    <!-- Services of Interest (Multi-select check pills) -->
+    <div>
+      <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-3">
+        Services You Require
+      </label>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="services-checklist">
+        {[
+          { id: 'cloud-devops', label: 'Enterprise DevOps & K8s' },
+          { id: 'web-dev', label: 'Modern Web & WordPress' },
+          { id: 'db-messaging', label: 'Database & Streaming' },
+          { id: 'ai-automation', label: 'AI & Vision Automation' },
+          { id: 'digital-marketing-seo', label: 'Technical SEO & GEO' },
+          { id: 'business-ops', label: 'Financial Ops & Docs' },
+        ].map((srv) => (
+          <label class="flex items-center gap-2 p-2.5 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] cursor-pointer text-xs text-slate-300">
+            <input
+              type="checkbox"
+              name="services"
+              value={srv.id}
+              checked={preselectedService === srv.id}
+              class="rounded border-slate-700 bg-slate-900 text-indigo-500 focus:ring-0"
+            />
+            <span>{srv.label}</span>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <!-- Target Budget Range -->
+    <div>
+      <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+        Estimated Budget (USD)
+      </label>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+        {[
+          { value: '1k-3k', label: '$1,200 - $3,000' },
+          { value: '3k-6k', label: '$3,000 - $6,000' },
+          { value: '6k-12k', label: '$6,000 - $12,000' },
+          { value: 'custom', label: '$12,000+ / Retainer' },
+        ].map((b, idx) => (
+          <label class="flex items-center justify-center p-3 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] cursor-pointer text-xs font-medium text-slate-200 text-center">
+            <input
+              type="radio"
+              name="budget"
+              value={b.value}
+              checked={idx === 1}
+              class="sr-only peer"
+            />
+            <span class="peer-checked:text-sky-300 peer-checked:font-bold">{b.label}</span>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <!-- Hosting & Infrastructure Intent -->
+    <div>
+      <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+        Deployment / Hosting Target
+      </label>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+        {[
+          { value: 'cloudflare', label: 'Cloudflare Pages & Workers' },
+          { value: 'netlify', label: 'Netlify Edge & CDN' },
+          { value: 'undecided', label: 'Open to Recommendation' },
+        ].map((h, idx) => (
+          <label class="flex items-center justify-center p-2.5 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] cursor-pointer text-xs text-slate-300">
+            <input
+              type="radio"
+              name="hosting"
+              value={h.value}
+              checked={idx === 0}
+              class="sr-only peer"
+            />
+            <span class="peer-checked:text-indigo-400 peer-checked:font-bold">{h.label}</span>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <!-- Project Description -->
+    <div>
+      <label for="project-summary" class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+        Tell Me About Your Project <span class="text-rose-400">*</span>
+      </label>
+      <textarea
+        id="project-summary"
+        name="details"
+        required
+        rows="4"
+        placeholder="What are you building? Any specific deadline, competitor inspirations, or technical stack preferences?"
+        class="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 focus:border-indigo-500 focus:bg-white/[0.07] text-white placeholder-slate-500 text-sm focus:outline-none transition-colors"
+      ></textarea>
+    </div>
+
+    <!-- Submit Button & Guarantee Note -->
+    <div class="pt-2">
+      <button
+        type="submit"
+        id="submit-btn"
+        class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 hover:from-sky-400 hover:to-purple-500 text-white font-bold text-base transition-all duration-300 shadow-xl shadow-indigo-500/25 flex items-center justify-center gap-2 group cursor-pointer"
+      >
+        <Send class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        <span>Submit Project Inquiry</span>
+      </button>
+
+      <div class="flex items-center justify-center gap-2 mt-3 text-xs text-slate-400">
+        <ShieldCheck class="w-4 h-4 text-emerald-400" />
+        <span>Strict Non-Disclosure Guarantee • No spam, ever</span>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<script>
+  function setupContactForm() {
+    const form = document.getElementById('project-contact-form') as HTMLFormElement | null;
+    const successMsg = document.getElementById('form-success-message');
+    const submitBtn = document.getElementById('submit-btn');
+
+    // Pre-populate if query params exist
+    const urlParams = new URLSearchParams(window.location.search);
+    const estPrice = urlParams.get('estPrice');
+    const projectType = urlParams.get('type');
+    const projectSummary = document.getElementById('project-summary') as HTMLTextAreaElement | null;
+
+    if (estPrice && projectSummary && !projectSummary.value) {
+      projectSummary.value = `Hi, I ran the estimator on your site for a ${projectType || 'custom'} build with an estimated budget of ${estPrice}. I would like to discuss next steps.`;
+    }
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        if (submitBtn) {
+          submitBtn.innerHTML = `<span>Sending inquiry...</span>`;
+        }
+
+        // Simulate seamless submission & feedback
+        setTimeout(() => {
+          if (successMsg) {
+            successMsg.classList.remove('hidden');
+            successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          if (submitBtn) {
+            submitBtn.innerHTML = `<span>Inquiry Sent ✓</span>`;
+            submitBtn.classList.add('bg-emerald-600');
+          }
+          form.reset();
+        }, 600);
+      });
+    }
+  }
+
+  setupContactForm();
+  document.addEventListener('astro:page-load', setupContactForm);
+</script>
+

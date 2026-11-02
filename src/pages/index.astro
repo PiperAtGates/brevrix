@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import TechMarquee from '../components/TechMarquee.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ProjectEstimator from '../components/ProjectEstimator.astro';
+import ProcessWorkflow from '../components/ProcessWorkflow.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
+import PricingSection from '../components/PricingSection.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { servicesData } from '../data/services';
+import { projectsData } from '../data/projects';
+import { ArrowRight, Sparkles, Layers, ShieldCheck, CheckCircle2 } from '@lucide/astro';
+---
+
+<Layout
+  title="Brevrix | Full-Stack Web, Enterprise DevOps & Digital Growth Studio"
+  description="Brevrix delivers ultra-fast Astro & WordPress websites, enterprise Kubernetes & CI/CD DevOps architecture, AI workflow automations, and data-driven digital marketing."
+>
+  <!-- Flagship Hero Section -->
+  <Hero />
+
+  <!-- Modern Tech Marquee Banner -->
+  <TechMarquee />
+
+  <!-- Core Services Showcase Section -->
+  <section class="py-24 relative overflow-hidden" id="services">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-mono mb-4">
+            <Sparkles class="w-3.5 h-3.5" />
+            <span>High-Value Freelancing Services</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Specialized Skills Engineered For Growth
+          </h2>
+          <p class="text-slate-400 text-base sm:text-lg mt-3">
+            From greenfield MVP development to sub-second edge hosting, explore the core capabilities I offer to startups and modern brands.
+          </p>
+        </div>
+
+        <a
+          href="/services"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-sky-400 hover:text-sky-300 transition-colors group pb-2"
+        >
+          <span>View All Deliverables & Specs</span>
+          <ArrowRight class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </a>
+      </div>
+
+      <!-- Services Grid (Top 6) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {servicesData.map((service) => (
+          <ServiceCard service={service} />
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Real-Time Project Estimator -->
+  <ProjectEstimator />
+
+  <!-- Featured Case Studies & Work -->
+  <section class="py-24 relative overflow-hidden bg-slate-950/40 border-t border-white/5" id="work">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono mb-4">
+            <Layers class="w-3.5 h-3.5" />
+            <span>Proven Track Record</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Featured Projects & Case Studies
+          </h2>
+          <p class="text-slate-400 text-base sm:text-lg mt-3">
+            Real products, real metrics. Explore how tailored engineering and refined UI/UX design created tangible commercial impact.
+          </p>
+        </div>
+
+        <a
+          href="/work"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-purple-400 hover:text-purple-300 transition-colors group pb-2"
+        >
+          <span>Browse All Portfolio Items</span>
+          <ArrowRight class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </a>
+      </div>
+
+      <!-- Projects Grid (Top 3) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projectsData.slice(0, 3).map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4-Step Engineering Workflow -->
+  <ProcessWorkflow />
+
+  <!-- Pricing Packages -->
+  <PricingSection />
+
+  <!-- Client Testimonials & Social Proof -->
+  <TestimonialsSection />
+
+  <!-- Frequently Asked Questions Accordion -->
+  <FaqAccordion />
+
+  <!-- High-Converting Bottom CTA Banner -->
+  <CtaBanner />
+
+</Layout>
