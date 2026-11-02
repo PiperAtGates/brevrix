@@ -14,9 +14,7 @@ export async function getStaticPaths() {
 const post = Astro.props;
 const { Content } = await render(post);
 
-const authorBio = post.data.author === "Sadia Afrin Lubna"
-  ? "System & DevOps Engineer with enterprise experience in Linux administration, Kubernetes (k8s/k3s), Docker, ArgoCD, Jenkins, and high-availability databases (PostgreSQL, ClickHouse, Redis)."
-  : "Web Developer, Digital Marketing Specialist & Operations Lead with a BBA (Honours) in Accounting. Specializes in high-converting websites, SEO, and structured project delivery.";
+const authorBio = "Founder & Principal Systems/DevOps Engineer at Brevrix with extensive enterprise experience in Linux administration, Kubernetes (k8s/k3s), Docker, ArgoCD, Jenkins, and high-availability databases (PostgreSQL, ClickHouse, Redis).";
 ---
 
 <Layout 

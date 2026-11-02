@@ -9,9 +9,9 @@
 - **AI & Automation**: Python, YOLOv5/OpenCV computer vision, n8n workflow automation.
 - **Digital Marketing & Business Ops**: Technical SEO, Generative Engine Optimization (GEO), Email Marketing, Financial Record Keeping & Project Coordination.
 
-## Key Team Members
-- **Md. Tanvir Ahmed**: Co-Founder, Web Developer, Digital Marketer & Financial Operations Lead (BBA Honours in Accounting).
-- **Sadia Afrin Lubna**: Co-Founder & System/DevOps Engineer (BSc in CSE, experienced in Enterprise Linux, Kubernetes, ArgoCD, and Machine Learning).
+## Leadership & Engineering Lead
+- **Sadia Afrin Lubna**: Founder & Principal Systems/DevOps Engineer (BSc in CSE, specialized in Enterprise Linux, Kubernetes, ArgoCD GitOps, Distributed Databases, and Machine Learning).
+- Direct Contact: sadialubnaa@gmail.com
 
 ## Important URLs
 - Services: https://brevrix.com/services

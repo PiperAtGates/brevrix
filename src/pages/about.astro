@@ -2,36 +2,60 @@
 import Layout from '../layouts/Layout.astro';
 import CtaBanner from '../components/CtaBanner.astro';
 import ProcessWorkflow from '../components/ProcessWorkflow.astro';
-import { ShieldCheck, Cpu, Code2, Sparkles, Terminal, HeartHandshake, CheckCircle2, ArrowRight } from '@lucide/astro';
+import { ShieldCheck, Cpu, Code2, Sparkles, Terminal, HeartHandshake, CheckCircle2, ArrowRight, Layers, Database, Lock, Mail, ExternalLink } from '@lucide/astro';
 
-const teamMembers = [
+const technicalLead = {
+  name: "Sadia Afrin Lubna",
+  title: "Founder & Principal Systems/DevOps Engineer",
+  education: "BSc in Computer Science & Engineering (CSE) — IUBAT",
+  bio: "Experienced Systems Engineer with extensive hands-on experience architecting, managing, and troubleshooting mission-critical applications across Development, UAT, and Production environments. Specializes in production-grade Linux servers, Kubernetes (k8s/k3s) cluster orchestration, automated GitOps CI/CD pipelines (ArgoCD, Jenkins, GitLab CI), high-throughput data layers (PostgreSQL, ClickHouse, Redis), and practical AI model inference pipelines.",
+  coreStack: [
+    "Kubernetes (k8s/k3s/Helm)",
+    "Docker & Linux (Ubuntu/RHEL)",
+    "ArgoCD & Jenkins CI/CD",
+    "PostgreSQL, Redis & ClickHouse",
+    "Kong API Gateway & Keycloak",
+    "Python, YOLOv5 & OpenCV",
+    "Trivy Security Scanning"
+  ],
+  links: {
+    linkedin: "https://www.linkedin.com/in/sadia-lubna/",
+    github: "https://github.com/sadia-lubna",
+    email: "mailto:sadialubnaa@gmail.com"
+  }
+};
+
+const studioCapabilities = [
   {
-    name: "Md. Tanvir Ahmed",
-    role: "Co-Founder | Web Engineering, Digital Growth & Operations Lead",
-    education: "BBA (Honours) in Accounting — Govt. B. L. College",
-    bio: "Specializes in building high-converting web platforms with Astro and WordPress, managing technical SEO and email marketing campaigns, and ensuring structured project coordination and financial reporting accuracy.",
-    skills: ["Astro & WordPress", "HTML5/CSS3", "Technical SEO", "Digital Marketing", "Project Management", "Financial Documentation"],
-    links: {
-      email: "mailto:taanvir1839@gmail.com"
-    }
+    title: "Enterprise Systems & Cloud Infrastructure",
+    lead: "Infrastructure Practice",
+    desc: "Production-tested Linux administration, Kubernetes cluster lifecycle management, automated zero-downtime CI/CD deployments, and enterprise security hardening.",
+    icon: Terminal
   },
   {
-    name: "Sadia Afrin Lubna",
-    role: "Co-Founder | System & Enterprise DevOps Engineer",
-    education: "BSc in Computer Science & Engineering (CSE) — IUBAT",
-    bio: "Experienced System Engineer managing enterprise applications across Development, UAT, and Production environments. Expert in Linux servers, Kubernetes orchestration, automated CI/CD GitOps workflows, and high-availability databases.",
-    skills: ["Kubernetes (k8s/k3s)", "Docker & Helm", "ArgoCD & Jenkins", "Linux (Ubuntu/RHEL)", "PostgreSQL, Redis & ClickHouse", "Python & YOLOv5 ML"],
-    links: {
-      linkedin: "https://www.linkedin.com/in/sadia-lubna/",
-      github: "https://github.com/sadia-lubna"
-    }
+    title: "High-Performance Web & CMS Engineering",
+    lead: "Web Engineering Practice",
+    desc: "Sub-second Astro static platforms, custom WordPress business systems, and headless architectures achieving 100/100 Lighthouse performance.",
+    icon: Code2
+  },
+  {
+    title: "Distributed Data & Messaging Systems",
+    lead: "Data Architecture Practice",
+    desc: "Relational tuning (PostgreSQL, MySQL), low-latency analytical stores (ClickHouse), Redis caching layers, and asynchronous messaging (Kafka/RabbitMQ).",
+    icon: Database
+  },
+  {
+    title: "Accountable Delivery & Project Governance",
+    lead: "Operations & Quality Assurance",
+    desc: "Rigorous milestone tracking, structured documentation, SLA guarantees, and transparent financial reporting backed by disciplined business management.",
+    icon: ShieldCheck
   }
 ];
 
 const comparisons = [
   {
     feature: "Direct Technical Access",
-    brevrix: "Direct 1-on-1 collaboration with the actual engineers doing the work",
+    brevrix: "Direct collaboration with the Principal Engineer architecting your systems",
     agency: "Filtered through layers of junior account managers and non-technical coordinators",
   },
   {
@@ -46,34 +70,34 @@ const comparisons = [
   },
   {
     feature: "Accountability & Documentation",
-    brevrix: "Formal accounting discipline, clear milestones, transparent reporting",
+    brevrix: "Disciplined milestone delivery, comprehensive architectural docs, transparent reporting",
     agency: "Ambiguous billable hours with unexpected extra fees and poor handover",
   },
   {
     feature: "IP & Repository Handover",
-    brevrix: "100% full transfer of repositories, container configs, and design assets",
+    brevrix: "100% full transfer of repositories, container configs, and production assets",
     agency: "Complex retainers or proprietary vendor lock-in contracts",
   }
 ];
 ---
 
 <Layout 
-  title="About Brevrix | Verified Engineering & Digital Growth Team" 
-  description="Meet the engineering and operations team behind Brevrix. Combining enterprise DevOps, modern web development, and structured business management."
+  title="About Brevrix | Boutique Engineering & Infrastructure Studio" 
+  description="Discover Brevrix: an elite engineering studio founded and led by Sadia Afrin Lubna, delivering enterprise DevOps, Kubernetes, and high-performance web systems."
   currentPath="/about"
 >
   <section class="max-w-6xl mx-auto px-6 py-16">
     <!-- Trust Header -->
     <div class="max-w-3xl mb-16">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 text-xs font-mono mb-4">
-        <span>Why Clients Trust Brevrix</span>
+        <span>The Brevrix Philosophy</span>
       </div>
       <h1 class="text-4xl md:text-5xl font-extrabold text-white mt-2 mb-6 leading-tight font-heading">
         Enterprise Engineering Meets <br />
-        <span class="gradient-accent">Disciplined Execution.</span>
+        <span class="gradient-accent">Boutique Craftsmanship.</span>
       </h1>
       <p class="text-slate-300 text-base md:text-lg leading-relaxed">
-        Unlike anonymous freelance profiles that disappear mid-project, Brevrix is led by dedicated specialists in Software Infrastructure, Web Development, and Business Operations. We combine production-grade Linux & Kubernetes engineering with transparent, dependable delivery.
+        Brevrix is an independent engineering and systems architecture studio. We partner directly with technical founders, CTOs, and scaling companies to deliver production-grade infrastructure, high-converting web platforms, and reliable distributed systems.
       </p>
     </div>
 
@@ -87,66 +111,131 @@ const comparisons = [
       <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-indigo-500/40 transition-all">
         <div class="text-2xl font-extrabold text-indigo-400 mb-2 font-heading">100/100 Speed</div>
         <h3 class="text-lg font-bold text-white mb-2">Modern Web Architecture</h3>
-        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">We build on Astro, Tailwind, and optimized WordPress stacks that pass Google Core Web Vitals effortlessly.</p>
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">We build on Astro, Tailwind, and Cloudflare Edge networks that pass Google Core Web Vitals effortlessly.</p>
       </div>
       <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-emerald-500/40 transition-all">
-        <div class="text-2xl font-extrabold text-emerald-400 mb-2 font-heading">Zero Friction</div>
-        <h3 class="text-lg font-bold text-white mb-2">Accountable Operations</h3>
-        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">Backed by formal accounting and administrative discipline—clear timelines, organized documentation, and honest billing.</p>
+        <div class="text-2xl font-extrabold text-emerald-400 mb-2 font-heading">Zero Compromise</div>
+        <h3 class="text-lg font-bold text-white mb-2">Principal-Led Execution</h3>
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">No junior handoffs. Every architecture decision is designed, verified, and audited by our Principal Engineer.</p>
       </div>
     </div>
 
-    <!-- Leadership Team -->
+    <!-- Founder & Technical Lead Spotlight -->
     <div class="mb-20">
-      <div class="mb-10">
-        <div class="text-xs font-mono uppercase tracking-wider text-indigo-400 mb-2">E-E-A-T Verified Leadership</div>
-        <h2 class="text-3xl font-extrabold text-white font-heading">Meet Our Core Leadership</h2>
+      <div class="mb-8">
+        <div class="text-xs font-mono uppercase tracking-wider text-sky-400 mb-2">Principal Technical Leadership</div>
+        <h2 class="text-3xl font-extrabold text-white font-heading">Meet Our Technical Director</h2>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-8">
-        {teamMembers.map((member) => (
-          <div class="glass-card rounded-2xl p-8 border border-white/10 flex flex-col justify-between hover:border-indigo-500/30 transition-all">
-            <div>
-              <h3 class="text-2xl font-bold text-white">{member.name}</h3>
-              <p class="text-sky-400 font-medium text-xs sm:text-sm mt-1 mb-2">{member.role}</p>
-              <p class="text-xs text-slate-400 mb-5 pb-4 border-b border-white/5 font-mono">{member.education}</p>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">{member.bio}</p>
-              
-              <div class="flex flex-wrap gap-1.5 mb-6">
-                {member.skills.map((skill) => (
-                  <span class="px-2.5 py-1 rounded-lg bg-white/5 text-slate-300 border border-white/5 text-xs font-mono">
-                    {skill}
+      <div class="glass-card rounded-3xl p-8 sm:p-12 border border-white/10 relative overflow-hidden group hover:border-sky-500/40 transition-all">
+        <!-- Ambient corner glow -->
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="flex flex-wrap items-center gap-3">
+              <h3 class="text-3xl font-bold text-white font-heading">{technicalLead.name}</h3>
+              <span class="px-3 py-1 rounded-full text-xs font-mono bg-sky-500/10 text-sky-300 border border-sky-500/20">
+                Founder & Technical Lead
+              </span>
+            </div>
+
+            <p class="text-xs text-slate-400 font-mono pb-2 border-b border-white/5">
+              {technicalLead.education}
+            </p>
+
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed pt-2">
+              {technicalLead.bio}
+            </p>
+
+            <div class="pt-4">
+              <span class="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-3">Core Engineering Arsenal:</span>
+              <div class="flex flex-wrap gap-2">
+                {technicalLead.coreStack.map((tech) => (
+                  <span class="px-3 py-1 rounded-lg bg-white/5 text-slate-300 border border-white/10 text-xs font-mono">
+                    {tech}
                   </span>
                 ))}
               </div>
             </div>
+          </div>
 
-            <div class="flex gap-4 text-xs font-semibold text-indigo-400 pt-4 border-t border-white/10">
-              {member.links.linkedin && (
-                <a href={member.links.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-white inline-flex items-center gap-1 transition-colors">
-                  <span>LinkedIn Profile</span>
-                  <span>↗</span>
-                </a>
-              )}
-              {member.links.github && (
-                <a href={member.links.github} target="_blank" rel="noopener noreferrer" class="hover:text-white inline-flex items-center gap-1 transition-colors">
-                  <span>GitHub Portfolio</span>
-                  <span>↗</span>
-                </a>
-              )}
-              {member.links.email && (
-                <a href={member.links.email} class="hover:text-white inline-flex items-center gap-1 transition-colors">
-                  <span>Direct Email</span>
-                  <span>↗</span>
-                </a>
-              )}
+          <div class="lg:col-span-4 bg-white/[0.02] p-6 rounded-2xl border border-white/5 space-y-5">
+            <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400">Direct Verification & Contact</h4>
+            
+            <div class="space-y-3 text-xs">
+              <a
+                href={technicalLead.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between p-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] text-slate-200 border border-white/5 transition-all group/link"
+              >
+                <span>LinkedIn Profile</span>
+                <span class="text-sky-400 group-hover/link:translate-x-1 transition-transform">↗</span>
+              </a>
+
+              <a
+                href={technicalLead.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between p-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] text-slate-200 border border-white/5 transition-all group/link"
+              >
+                <span>GitHub Repositories</span>
+                <span class="text-sky-400 group-hover/link:translate-x-1 transition-transform">↗</span>
+              </a>
+
+              <a
+                href={technicalLead.links.email}
+                class="flex items-center justify-between p-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] text-slate-200 border border-white/5 transition-all group/link"
+              >
+                <span class="font-mono text-sky-300">sadialubnaa@gmail.com</span>
+                <span class="text-sky-400 group-hover/link:translate-x-1 transition-transform">↗</span>
+              </a>
+            </div>
+
+            <div class="pt-2">
+              <a
+                href="/contact"
+                class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-semibold text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-indigo-500/25"
+              >
+                <span>Consult with Sadia</span>
+                <ArrowRight class="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
-        ))}
+        </div>
       </div>
     </div>
 
-    <!-- Comparison Table -->
+    <!-- Studio Capabilities Matrix -->
+    <div class="mb-20">
+      <div class="mb-8">
+        <div class="text-xs font-mono uppercase tracking-wider text-indigo-400 mb-2">Multi-Disciplinary Delivery</div>
+        <h2 class="text-3xl font-extrabold text-white font-heading">Our Studio Practice Areas</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {studioCapabilities.map((cap) => {
+          const Icon = cap.icon;
+          return (
+            <div class="glass-card rounded-2xl p-7 border border-white/10 hover:border-indigo-500/30 transition-all">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+                  <Icon class="w-5 h-5" />
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono uppercase tracking-wider text-sky-400 block">{cap.lead}</span>
+                  <h3 class="text-lg font-bold text-white">{cap.title}</h3>
+                </div>
+              </div>
+              <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">{cap.desc}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- Comparison: Brevrix vs Traditional Agency -->
     <div class="mb-20">
       <div class="text-center mb-10">
         <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">

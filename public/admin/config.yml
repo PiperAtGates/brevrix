@@ -17,7 +17,7 @@ collections:
       - { label: "Description (SEO & AI Summary)", name: "description", widget: "text" }
       - { label: "Direct Answer / Key Takeaway (For AI Citations)", name: "aiSummary", widget: "text" }
       - { label: "Publish Date", name: "pubDate", widget: "datetime" }
-      - { label: "Author", name: "author", widget: "select", options: ["Md. Tanvir Ahmed", "Sadia Afrin Lubna"], default: "Sadia Afrin Lubna" }
+      - { label: "Author", name: "author", widget: "string", default: "Sadia Afrin Lubna" }
       - { label: "Category", name: "category", widget: "select", options: ["DevOps & Kubernetes", "Linux & Servers", "Web Development", "Digital Marketing & SEO", "AI & Automation"] }
       - { label: "Featured Image", name: "heroImage", widget: "image", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
