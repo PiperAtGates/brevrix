@@ -10,14 +10,16 @@ import TestimonialsSection from '../components/TestimonialsSection.astro';
 import PricingSection from '../components/PricingSection.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import CtaBanner from '../components/CtaBanner.astro';
+import { faqsData } from '../data/faq';
 import { servicesData } from '../data/services';
 import { projectsData } from '../data/projects';
 import { ArrowRight, Sparkles, Layers, ShieldCheck, CheckCircle2 } from '@lucide/astro';
 ---
 
 <Layout
-  title="Brevrix | Full-Stack Web, Enterprise DevOps & Digital Growth Studio"
-  description="Brevrix delivers ultra-fast Astro & WordPress websites, enterprise Kubernetes & CI/CD DevOps architecture, AI workflow automations, and data-driven digital marketing."
+  title="Brevrix | Web, DevOps & AI Automation Studio"
+  description="Brevrix builds fast Astro & WordPress sites, Kubernetes DevOps, and AI automations for founders. Fixed-price projects, full code handover, 30-day warranty."
+  faqItems={faqsData}
 >
   <!-- Flagship Hero Section -->
   <Hero />

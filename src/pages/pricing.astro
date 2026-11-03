@@ -4,13 +4,15 @@ import PricingSection from '../components/PricingSection.astro';
 import ProjectEstimator from '../components/ProjectEstimator.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import CtaBanner from '../components/CtaBanner.astro';
+import { faqsData } from '../data/faq';
 import { DollarSign, ShieldCheck, Clock, CreditCard, Sparkles } from '@lucide/astro';
 ---
 
 <Layout
-  title="Predictable Pricing & Packages | Brevrix Engineering Studio"
-  description="Transparent, fixed-price project sprints and monthly retainer packages for DevOps, Kubernetes, Astro/WordPress web development, and digital marketing."
+  title="Transparent Pricing & Sprints | Brevrix"
+  description="Predictable, fixed-price sprints and $249 audits for Kubernetes DevOps, Astro web development, and database recovery. Full IP handover & 30-day warranty."
   currentPath="/pricing"
+  faqItems={faqsData}
 >
   <!-- Page Header -->
   <section class="py-16 md:py-24 relative overflow-hidden">
@@ -38,7 +40,7 @@ import { DollarSign, ShieldCheck, Clock, CreditCard, Sparkles } from '@lucide/as
         </div>
         <div class="flex items-center gap-2">
           <CreditCard class="w-4 h-4 text-purple-400" />
-          <span>Stripe / Wire / Crypto Accepted</span>
+          <span>Payoneer, Wise & Wire Accepted</span>
         </div>
       </div>
     </div>

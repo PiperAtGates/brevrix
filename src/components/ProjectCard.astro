@@ -1,6 +1,6 @@
 ---
 import type { ProjectItem } from '../data/projects';
-import { ArrowUpRight, CheckCircle2, TrendingUp } from '@lucide/astro';
+import { ArrowUpRight, CheckCircle2, TrendingUp, Code2, ExternalLink } from '@lucide/astro';
 
 interface Props {
   project: ProjectItem;
@@ -17,11 +17,15 @@ const { project } = Astro.props;
       <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
       <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
       <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-      <span class="ml-2 text-[11px] text-slate-500 font-mono hidden sm:inline">brivrix.case-study/{project.id}</span>
+      <span class="ml-2 text-[11px] text-slate-500 font-mono hidden sm:inline">{project.category} • 2026</span>
     </div>
 
-    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/5">
-      {project.category}
+    <span class={`text-[11px] font-mono px-2 py-0.5 rounded border ${
+      project.projectTypeBadge === 'Live Production'
+        ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+        : 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20'
+    }`}>
+      {project.projectTypeBadge}
     </span>
   </div>
 
@@ -37,8 +41,29 @@ const { project } = Astro.props;
         <span class="text-slate-300 text-[11px] hidden sm:inline">{project.metricLabel}</span>
       </div>
 
-      <div class="w-8 h-8 rounded-full bg-black/40 border border-white/20 flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-white/20 transition-all">
-        <ArrowUpRight class="w-4 h-4" />
+      <div class="flex items-center gap-2">
+        {project.githubUrl && (
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-8 h-8 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all"
+            title="Inspect GitHub Source"
+          >
+            <Code2 class="w-4 h-4" />
+          </a>
+        )}
+        {project.demoUrl && (
+          <a
+            href={project.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-8 h-8 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all"
+            title="Visit Live URL"
+          >
+            <ExternalLink class="w-4 h-4" />
+          </a>
+        )}
       </div>
     </div>
 
@@ -83,7 +108,7 @@ const { project } = Astro.props;
         href={`/contact?subject=${encodeURIComponent('Inquiry regarding ' + project.title)}`}
         class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold inline-flex items-center gap-1 group/btn"
       >
-        <span>Build Similar</span>
+        <span>Discuss Architecture</span>
         <ArrowUpRight class="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
       </a>
     </div>
@@ -91,4 +116,3 @@ const { project } = Astro.props;
   </div>
 
 </div>
-

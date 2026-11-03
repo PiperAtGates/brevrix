@@ -2,6 +2,7 @@ export interface ProjectItem {
   id: string;
   title: string;
   category: "Web & SaaS" | "UI/UX Design" | "AI & Automation" | "DevOps & Cloud";
+  projectTypeBadge: "Live Production" | "Architecture Blueprint" | "Internal Lab Build" | "Security Blueprint";
   tagline: string;
   description: string;
   metric: string;
@@ -15,106 +16,114 @@ export interface ProjectItem {
 
 export const projectsData: ProjectItem[] = [
   {
-    id: "zenith-saas",
-    title: "Zenith Flow – AI Ops Platform",
+    id: "brevrix-platform",
+    title: "Brevrix.com — High-Performance Edge Web Platform",
     category: "Web & SaaS",
-    tagline: "Autonomous incident monitoring and developer workflow automation dashboard.",
-    description: "Architected a responsive SaaS application handling real-time telemetry from multiple cloud clusters. Implemented live WebSocket streaming, dark mode glassmorphism UI, and role-based team management.",
-    metric: "320ms",
-    metricLabel: "Query response time down from 2.4s",
-    tech: ["Astro", "React", "TypeScript", "Tailwind CSS", "Cloudflare Workers", "Supabase"],
+    projectTypeBadge: "Live Production",
+    tagline: "Ultra-fast Astro v5, Tailwind CSS v4, and Cloudflare Pages edge delivery.",
+    description: "Architected and engineered the official Brevrix production web system. Built with static site generation, sub-50ms edge caching across 300+ global Cloudflare PoPs, and 100/100 Core Web Vitals.",
+    metric: "100/100",
+    metricLabel: "Verified Lighthouse Core Web Vitals",
+    tech: ["Astro", "Tailwind CSS", "TypeScript", "Cloudflare Pages", "Edge Caching"],
     imageGradient: "from-blue-600 via-indigo-600 to-violet-800",
+    demoUrl: "https://brevrix.com",
+    githubUrl: "https://github.com/PiperAtGates/brevrix",
     features: [
-      "Real-time event streaming with WebSockets",
-      "Dynamic data visualization with SVG charts",
-      "Stripe recurring billing & tier gating",
-      "Multi-tenant role permissions"
+      "100/100 Google PageSpeed mobile & desktop score",
+      "Sub-50ms Time To First Byte (TTFB) worldwide",
+      "Zero client-side JavaScript bloat on static routes",
+      "Automated CI/CD deployment on every Git push"
     ]
   },
   {
-    id: "pulse-fintech",
-    title: "PulsePay – Global Treasury Portal",
-    category: "UI/UX Design",
-    tagline: "Ultra-sleek financial exchange interface designed for seamless cross-border liquidity.",
-    description: "Designed a comprehensive 40-screen mobile and desktop design system in Figma. Conducted 18 user interviews to eliminate friction in multi-currency conversion flows.",
-    metric: "+68%",
-    metricLabel: "Checkout completion rate increase",
-    tech: ["Figma", "Design Tokens", "Micro-Interactions", "User Journey Mapping", "Design System"],
+    id: "argocd-gitops-lab",
+    title: "Kubernetes GitOps with ArgoCD & Automated Security",
+    category: "DevOps & Cloud",
+    projectTypeBadge: "Architecture Blueprint",
+    tagline: "Declarative multi-cluster deployment pipeline with automated drift healing.",
+    description: "Engineered a production-ready GitOps pipeline using ArgoCD on Kubernetes. Features automated vulnerability scanning with Trivy in CI, declarative sync policies, and blue/green zero-downtime rollouts.",
+    metric: "0 Downtime",
+    metricLabel: "Automated blue/green deployment rollouts",
+    tech: ["Kubernetes", "ArgoCD", "Docker", "Trivy", "GitLab CI", "Prometheus"],
+    imageGradient: "from-amber-500 via-orange-600 to-red-700",
+    githubUrl: "https://github.com/PiperAtGates/brevrix",
+    features: [
+      "Declarative Application CRDs with automated sync",
+      "Container vulnerability scanning with Trivy in CI pipeline",
+      "Drift detection and self-healing cluster state",
+      "Prometheus & Grafana alerting for pod health"
+    ]
+  },
+  {
+    id: "postgres-ha-ops",
+    title: "PostgreSQL High Availability & pgBackRest Disaster Recovery",
+    category: "DevOps & Cloud",
+    projectTypeBadge: "Architecture Blueprint",
+    tagline: "Automated point-in-time recovery and streaming replication for mission-critical databases.",
+    description: "Designed a resilient database disaster recovery architecture. Implemented pgBackRest for automated differential backups to S3-compatible storage, WAL archiving, and automated failover verification.",
+    metric: "< 15 min",
+    metricLabel: "RTO disaster recovery target",
+    tech: ["PostgreSQL", "pgBackRest", "Linux", "Bash", "Redis", "Grafana"],
     imageGradient: "from-emerald-600 via-teal-600 to-cyan-800",
     features: [
-      "Atomic design token component library",
-      "Interactive high-fidelity prototyping",
-      "Zero-latency transaction preview modals",
-      "WCAG 2.1 AA accessibility compliance"
+      "Automated daily differential and weekly full backups",
+      "Continuous WAL archiving with Point-In-Time-Recovery (PITR)",
+      "Automated backup integrity testing scripts",
+      "Redis memory caching layer with optimized eviction policies"
     ]
   },
   {
-    id: "cortex-ai",
-    title: "Cortex Copilot – Internal Enterprise AI",
+    id: "ai-n8n-automation",
+    title: "Autonomous Event & Webhook AI Automation Pipeline",
     category: "AI & Automation",
-    tagline: "Context-aware enterprise documentation search and automated compliance auditor.",
-    description: "Built an intelligent RAG (Retrieval-Augmented Generation) pipeline connecting Slack, Notion, and Jira. Reduced customer support escalation turnaround by 75%.",
-    metric: "14 hrs",
-    metricLabel: "Saved per engineer each week",
-    tech: ["Python", "OpenAI API", "Vector Embeddings", "LangChain", "n8n", "Docker"],
+    projectTypeBadge: "Internal Lab Build",
+    tagline: "Self-hosted n8n workflow cluster integrating webhooks, CRM sync, and LLM extraction.",
+    description: "Built a self-hosted event-driven automation cluster on Docker. Ingests customer leads via webhooks, executes structured data extraction with OpenAI API, and synchronizes data into PostgreSQL and Discord/Slack.",
+    metric: "100% Async",
+    metricLabel: "Hands-off lead triage & structured parsing",
+    tech: ["n8n", "Docker", "Python", "OpenAI API", "PostgreSQL", "Webhooks"],
     imageGradient: "from-purple-600 via-pink-600 to-rose-700",
     features: [
-      "Semantic similarity search over 50,000+ internal documents",
-      "Automated weekly status reports generated to Slack",
-      "Enterprise encryption and prompt sanitization",
-      "Hallucination mitigation validation guards"
+      "Self-hosted Dockerized n8n workflow engine with SSL",
+      "Structured LLM parsing and schema validation",
+      "Automated webhook verification with HMAC signatures",
+      "Instant multi-channel alerts with retry queues"
     ]
   },
   {
-    id: "hypercloud-infra",
-    title: "Veloce Media – Edge CDN & Infrastructure",
+    id: "linux-vps-hardening",
+    title: "Production Linux Server Hardening & Security Baseline",
     category: "DevOps & Cloud",
-    tagline: "Zero-downtime global multi-region edge deployment for high-traffic media site.",
-    description: "Migrated legacy monolith to a distributed edge network using Cloudflare Pages, Cloudflare Workers, and automated GitHub Actions CI/CD pipelines.",
-    metric: "100/100",
-    metricLabel: "Lighthouse mobile performance score",
-    tech: ["Cloudflare Pages", "Cloudflare Workers", "GitHub Actions", "Docker", "Wrangler", "Edge Caching"],
-    imageGradient: "from-amber-500 via-orange-600 to-red-700",
+    projectTypeBadge: "Security Blueprint",
+    tagline: "Zero-trust hardening baseline for Debian/Ubuntu VPS environments.",
+    description: "Created a reproducible server hardening blueprint implementing CIS benchmark recommendations: SSH ed25519 key-only authentication, UFW restrictive rules, Fail2ban intrusion prevention, and automatic security patching.",
+    metric: "0 Open Flaws",
+    metricLabel: "CIS-aligned baseline security standard",
+    tech: ["Ubuntu", "UFW", "Fail2ban", "WireGuard", "Nginx", "Systemd"],
+    imageGradient: "from-slate-700 via-zinc-800 to-slate-900",
     features: [
-      "Global asset caching with sub-30ms TTFB worldwide",
-      "Automated pull-request preview environments",
-      "Zero-downtime blue/green deployment strategy",
-      "Cloudflare Web Application Firewall (WAF) integration"
+      "Automated unattended security upgrades with zero service downtime",
+      "Strict UFW firewall and brute-force protection with Fail2ban",
+      "Encrypted WireGuard VPN for private server administration",
+      "Nginx reverse proxy with SSL A+ rating and security headers"
     ]
   },
   {
-    id: "novak-commerce",
-    title: "Novak Athletics – Headless E-Commerce",
+    id: "headless-wp-astro",
+    title: "Ultra-Fast Headless WordPress & Astro Architecture",
     category: "Web & SaaS",
-    tagline: "High-speed headless storefront with sub-second product filters and cart sync.",
-    description: "Engineered an ultra-fast headless storefront using Astro, Tailwind, and Shopify Storefront API. Boosted mobile conversion rates by 42% in the first 30 days.",
-    metric: "+42%",
-    metricLabel: "Increase in organic mobile conversions",
-    tech: ["Astro", "Tailwind CSS", "Shopify API", "TypeScript", "Cloudflare Pages"],
+    projectTypeBadge: "Architecture Blueprint",
+    tagline: "Decoupled WordPress CMS with static Astro edge rendering for sub-100ms speeds.",
+    description: "Eliminated slow database queries and vulnerability-prone PHP frontends by decoupling WordPress via REST API and pre-rendering the presentation layer into static Astro pages cached on Cloudflare Pages.",
+    metric: "Sub-100ms",
+    metricLabel: "Global edge delivery via Cloudflare",
+    tech: ["WordPress REST API", "Astro", "Tailwind CSS", "Cloudflare Cache Rules"],
     imageGradient: "from-cyan-600 via-blue-600 to-indigo-800",
     features: [
-      "Instant client-side predictive product search",
-      "Optimized WebP image delivery and responsive sizing",
-      "Cart persistence across multi-tab browsing sessions",
-      "Automated sitemap & Schema.org product data"
-    ]
-  },
-  {
-    id: "lumina-mobile",
-    title: "Lumina Habits – Daily Performance Tracker",
-    category: "UI/UX Design",
-    tagline: "Gamified behavioral neuroscience app designed for focused daily execution.",
-    description: "Complete product design and interactive prototype for an award-winning iOS and Android productivity tracker with over 50,000 active beta users.",
-    metric: "4.9 ★",
-    metricLabel: "App store rating across 1,200+ reviews",
-    tech: ["React Native", "Expo", "Figma", "Tailwind Mobile", "Local SQLite"],
-    imageGradient: "from-fuchsia-600 via-purple-700 to-indigo-900",
-    features: [
-      "Offline-first habit streaks and cloud backup",
-      "Custom haptic feedback and fluid animations",
-      "Interactive data widget for iOS lockscreen",
-      "Dark and OLED mode aesthetic"
+      "Decoupled architecture: WordPress CMS protected behind VPN",
+      "Static generation eliminating SQL injection risk on the frontend",
+      "Instant global edge invalidation on post publish",
+      "Mobile Lighthouse score boosted from 38 to 98"
     ]
   }
 ];
-

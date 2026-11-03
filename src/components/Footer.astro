@@ -3,21 +3,22 @@ import { ArrowUpRight, Mail, ShieldCheck, Zap, Globe, Sparkles } from '@lucide/a
 
 const services = [
   { name: 'Enterprise DevOps & K8s', href: '/services#cloud-devops' },
-  { name: 'Modern Web & WordPress', href: '/services#web-dev' },
-  { name: 'Database & Messaging', href: '/services#db-messaging' },
+  { name: 'Astro Web & WordPress Speed', href: '/services#web-dev' },
+  { name: 'Server & Speed Audit ($249)', href: '/pricing#audit' },
+  { name: 'PostgreSQL & Database Ops', href: '/services#db-messaging' },
   { name: 'AI & Workflow Automation', href: '/services#ai-automation' },
-  { name: 'Digital Marketing & SEO (GEO)', href: '/services#digital-marketing-seo' },
-  { name: 'Business Ops & Reporting', href: '/services#business-ops' },
+  { name: 'Technical SEO & Performance', href: '/services#digital-marketing-seo' },
 ];
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Services Directory', href: '/services' },
-  { name: 'Portfolio & Case Studies', href: '/work' },
+  { name: 'Services Hub', href: '/services' },
+  { name: 'Reference Architecture', href: '/work' },
   { name: 'Technical Blog & Guides', href: '/blog' },
   { name: 'About Leadership', href: '/about' },
   { name: 'Pricing & Estimator', href: '/pricing' },
   { name: 'Contact & Inquiry', href: '/contact' },
+  { name: 'Terms of Service', href: '/terms' },
   { name: 'Privacy Policy', href: '/privacy-policy' },
 ];
 ---
@@ -40,16 +41,27 @@ const navigation = [
           </div>
           <div>
             <span class="font-extrabold text-2xl tracking-tight text-white">BREVRIX<span class="text-indigo-400">.</span></span>
-            <p class="text-xs text-slate-400 font-mono">Full-Stack Web, DevOps & Digital Growth Studio</p>
+            <p class="text-xs text-slate-400 font-mono">Web, DevOps & AI Automation Studio</p>
           </div>
         </div>
 
         <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
-          Combining enterprise Linux & Kubernetes infrastructure engineering, ultra-fast Astro & WordPress development, AI automations, and transparent business operations.
+          High-performance web platforms, enterprise Kubernetes DevOps, and event-driven AI automations engineered for ambitious founders.
         </p>
 
+        <!-- Location Transparency & Overlap Note -->
+        <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 space-y-1 text-xs text-slate-400">
+          <div class="flex items-center gap-2 text-slate-300 font-medium">
+            <Globe class="w-3.5 h-3.5 text-sky-400 flex-shrink-0" />
+            <span>Based in Bangladesh, working worldwide (UTC+6)</span>
+          </div>
+          <p class="text-[11px] text-slate-400 pl-5.5">
+            Direct async communication + full working overlap with US EST/PST and EU timezones.
+          </p>
+        </div>
+
         <!-- Live Deployment Badges -->
-        <div class="pt-2 flex flex-wrap items-center gap-3">
+        <div class="pt-1 flex flex-wrap items-center gap-3">
           <div class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/[0.04] border border-white/10 text-xs text-slate-300">
             <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
             <span>Cloudflare Edge Ready</span>
@@ -58,25 +70,20 @@ const navigation = [
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
             <span>Kubernetes & GitOps Tested</span>
           </div>
-          <div class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/[0.04] border border-white/10 text-xs text-slate-300">
-            <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
-            <span>Astro Powered</span>
-          </div>
         </div>
       </div>
 
-      <!-- Services Column -->
+      <!-- Services Links -->
       <div class="space-y-4">
-        <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300 font-mono">Services</h3>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300 font-mono">Core Practices</h3>
         <ul class="space-y-2.5">
-          {services.map((item) => (
+          {services.map((service) => (
             <li>
               <a
-                href={item.href}
-                class="text-sm text-slate-400 hover:text-white transition-colors duration-200 inline-flex items-center gap-1 group"
+                href={service.href}
+                class="text-sm text-slate-400 hover:text-white transition-colors duration-200"
               >
-                <span>{item.name}</span>
-                <span class="text-slate-600 group-hover:text-indigo-400 transition-colors">›</span>
+                {service.name}
               </a>
             </li>
           ))}
@@ -104,21 +111,30 @@ const navigation = [
       <div class="space-y-4">
         <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300 font-mono">Connect & Hire</h3>
         <p class="text-xs text-slate-400">
-          Ready to discuss your infrastructure or web project? Reach out directly:
+          Ready to discuss your infrastructure or web build? Reach out directly:
         </p>
-        <a
-          href="mailto:sadialubnaa@gmail.com"
-          class="flex items-center gap-2 text-sm text-sky-400 hover:text-sky-300 transition-colors font-mono break-all"
-        >
-          <Mail class="w-4 h-4 flex-shrink-0" />
-          <span>sadialubnaa@gmail.com</span>
-        </a>
+        <div class="space-y-1.5">
+          <a
+            href="mailto:hello@brevrix.com"
+            class="flex items-center gap-2 text-xs text-sky-400 hover:text-sky-300 transition-colors font-mono break-all"
+          >
+            <Mail class="w-3.5 h-3.5 flex-shrink-0" />
+            <span>hello@brevrix.com</span>
+          </a>
+          <a
+            href="mailto:sadia@brevrix.com"
+            class="flex items-center gap-2 text-xs text-indigo-400 hover:text-indigo-300 transition-colors font-mono break-all"
+          >
+            <Mail class="w-3.5 h-3.5 flex-shrink-0" />
+            <span>sadia@brevrix.com</span>
+          </a>
+        </div>
         
         <!-- Social links with clean robust SVGs -->
         <div class="flex items-center gap-2.5 pt-2">
-          <!-- GitHub (Sadia's profile link) -->
+          <!-- GitHub (PiperAtGates / Sadia's profile link) -->
           <a
-            href="https://github.com/sadia-lubna"
+            href="https://github.com/PiperAtGates"
             target="_blank"
             rel="noopener noreferrer"
             class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors border border-white/5"
@@ -144,10 +160,12 @@ const navigation = [
 
         <div class="pt-2">
           <a
-            href="/contact"
+            href="https://cal.com/brevrix"
+            target="_blank"
+            rel="noopener noreferrer"
             class="inline-flex items-center gap-1.5 text-xs text-indigo-400 hover:text-indigo-300 font-medium"
           >
-            <span>Book a Technical Discovery Call</span>
+            <span>Book a 20-min Intro Call</span>
             <ArrowUpRight class="w-3.5 h-3.5" />
           </a>
         </div>
@@ -159,12 +177,13 @@ const navigation = [
     <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
       <p>© {new Date().getFullYear()} Brevrix (brevrix.com). All rights reserved.</p>
       
-      <div class="flex items-center gap-6">
+      <div class="flex items-center gap-5 flex-wrap">
         <span class="flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           <span class="text-slate-400">All Systems Operational</span>
         </span>
         <a href="/pricing" class="hover:text-slate-400 transition-colors">Pricing</a>
+        <a href="/terms" class="hover:text-slate-400 transition-colors">Terms of Service</a>
         <a href="/privacy-policy" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
         <a href="/contact" class="hover:text-slate-400 transition-colors">Contact</a>
       </div>

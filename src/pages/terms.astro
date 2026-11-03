@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ShieldCheck, FileText, CheckCircle2, AlertCircle, ArrowRight } from '@lucide/astro';
+---
+
+<Layout
+  title="Terms of Service & Engagement Standards | Brevrix"
+  description="Transparent terms of service, payment milestones, 30-day warranty, IP ownership transfer, and project policies at Brevrix."
+  currentPath="/terms"
+>
+  <section class="max-w-4xl mx-auto px-6 py-16 text-slate-300 space-y-8 leading-relaxed">
+    
+    <!-- Page Header -->
+    <div class="border-b border-white/10 pb-6 mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-mono mb-3">
+        <FileText class="w-3.5 h-3.5" />
+        <span>Client Agreement & Engagement Policies</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white font-heading">Terms of Service</h1>
+      <p class="text-xs text-slate-400 font-mono mt-2">Effective Date: November 2026 • Governing Fixed-Price & Retainer Contracts</p>
+    </div>
+
+    <!-- Intro -->
+    <p class="text-base text-slate-200">
+      These Terms of Service govern all engineering, consulting, and architecture services provided by <strong>Brevrix</strong> ("Studio", "we", "us") to you ("Client", "you"). By commissioning a project, purchasing an audit, or approving a statement of work, you agree to these clear terms designed to protect both parties.
+    </p>
+
+    <!-- Section 1: Engagement & Milestones -->
+    <div class="space-y-3">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="text-indigo-400 font-mono">01.</span> Fixed-Scope Sprints & Milestone Payments
+      </h2>
+      <p>
+        All development and DevOps engagements are executed under explicit, fixed-scope specifications agreed upon before kickoff. Standard project billing is milestone-based:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2 text-sm text-slate-300">
+        <li><strong>Deposit (50%):</strong> Due upon signing to reserve sprint capacity and initiate architectural setup.</li>
+        <li><strong>Final Milestone (50%):</strong> Due upon successful completion of deliverables on a staging preview environment and prior to production DNS / repository transfer.</li>
+      </ul>
+      <p class="text-sm">
+        Accepted payment methods include <strong>Payoneer, Wise, and direct international wire transfer</strong>. Invoices are denominated in USD.
+      </p>
+    </div>
+
+    <!-- Section 2: Server & Speed Audit Terms -->
+    <div class="space-y-3">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="text-indigo-400 font-mono">02.</span> Server & Speed Audit ($249) Terms
+      </h2>
+      <p>
+        Our introductory <strong>Server & Speed Audit ($249)</strong> is a fixed-deliverable diagnostic service:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2 text-sm text-slate-300">
+        <li><strong>Turnaround:</strong> 72 hours from the time complete, necessary access (read-only credentials or test clone) is provided by the Client.</li>
+        <li><strong>Deliverable:</strong> Actionable written technical report (PDF) accompanied by a recorded video walkthrough detailing identified bottlenecks and remediation steps.</li>
+        <li><strong>100% Fee Credit:</strong> The entire $249 fee is credited toward any subsequent development, migration, or DevOps project booked with Brevrix within 14 calendar days of audit delivery.</li>
+      </ul>
+    </div>
+
+    <!-- Section 3: Intellectual Property Handover -->
+    <div class="space-y-3">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="text-indigo-400 font-mono">03.</span> 100% Intellectual Property & Code Handover
+      </h2>
+      <p>
+        We believe in zero vendor lock-in. Upon settlement of the final milestone invoice:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2 text-sm text-slate-300">
+        <li>All custom source code, documentation, scripts, and deployment configurations created specifically for the project transfer 100% to Client ownership.</li>
+        <li>Git repositories, access tokens, and environment secrets are handed over completely.</li>
+        <li>Open-source components (e.g. Astro, Linux, Kubernetes, Terraform) remain governed by their respective permissive licenses (MIT, Apache 2.0).</li>
+      </ul>
+    </div>
+
+    <!-- Section 4: 30-Day Warranty -->
+    <div class="space-y-3">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="text-indigo-400 font-mono">04.</span> 30-Day Post-Launch Bug Warranty
+      </h2>
+      <p>
+        Every custom build includes a complimentary <strong>30-day post-launch warranty period</strong> starting on the date of production launch:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2 text-sm text-slate-300">
+        <li>Any functional bugs, styling inconsistencies, or configuration errors that deviate from the agreed specifications are resolved promptly at zero additional charge.</li>
+        <li>The warranty does not cover: new feature requests not included in the original scope, server failures caused by upstream cloud providers, or bugs introduced by Client modifications or third-party developers.</li>
+      </ul>
+    </div>
+
+    <!-- Section 5: Revisions & Scope Changes -->
+    <div class="space-y-3">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="text-indigo-400 font-mono">05.</span> Revisions & Scope Changes
+      </h2>
+      <p>
+        Each sprint deliverable includes two (2) rounds of review and refinement within the scope. Should you request features or architecture modifications outside the original brief, we will provide a clear, written estimate of additional cost and timeline adjustments before proceeding.
+      </p>
+    </div>
+
+    <!-- Section 6: Infrastructure & Third-Party Costs -->
+    <div class="space-y-3">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="text-indigo-400 font-mono">06.</span> Infrastructure & Third-Party Costs
+      </h2>
+      <p>
+        Client maintains direct accounts with cloud and infrastructure providers (such as Cloudflare, AWS, DigitalOcean, Hetzner, or domain registrars). All recurring monthly hosting, domain renewal, and SaaS API costs are billed directly to the Client by those third-party providers.
+      </p>
+    </div>
+
+    <!-- Section 7: Confidentiality & Non-Disclosure -->
+    <div class="space-y-3">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="text-indigo-400 font-mono">07.</span> Strict Non-Disclosure & Confidentiality
+      </h2>
+      <p>
+        All proprietary information, trade secrets, server access keys, customer records, and internal technical documentation shared with Brevrix remain strictly confidential. We are pleased to execute mutual Non-Disclosure Agreements (NDAs) prior to project kickoff upon request.
+      </p>
+    </div>
+
+    <!-- Section 8: Contact -->
+    <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 space-y-3">
+      <h3 class="text-base font-bold text-white">Questions Regarding Our Terms?</h3>
+      <p class="text-xs text-slate-400">
+        If you require custom enterprise contractual terms, specialized SLA guarantees, or an NDA review, please contact our team directly:
+      </p>
+      <div class="flex flex-wrap items-center gap-4 pt-1">
+        <a
+          href="mailto:hello@brevrix.com"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-mono border border-white/10 transition-colors"
+        >
+          <span>hello@brevrix.com</span>
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-1.5 text-xs text-indigo-400 hover:text-indigo-300 font-medium"
+        >
+          <span>Open Contact Inquiry</span>
+          <ArrowRight class="w-3.5 h-3.5" />
+        </a>
+      </div>
+    </div>
+
+  </section>
+</Layout>

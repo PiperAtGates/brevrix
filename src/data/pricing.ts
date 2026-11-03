@@ -16,72 +16,96 @@ export interface PricingTier {
 
 export const pricingTiers: PricingTier[] = [
   {
+    id: "audit",
+    name: "Server & Speed Audit",
+    tagline: "Low-risk, comprehensive diagnostic of your infrastructure or website speed.",
+    price: "$249",
+    period: "fixed price • 72 hrs",
+    badge: "Fastest Entry",
+    popular: false,
+    description: "Deep audit of your Linux/Kubernetes servers or WordPress/Astro speed. Includes written report, loom video, and 100% fee credit toward any build booked within 14 days.",
+    features: [
+      "Guaranteed 72-hour turnaround",
+      "Core Web Vitals & TTFB bottleneck analysis",
+      "Linux server & SSH security posture review",
+      "Database slow query & caching inspection",
+      "Actionable remediation blueprint (PDF)",
+      "15-min recorded Loom walkthrough of findings",
+      "100% fee credited toward any development project"
+    ],
+    notIncluded: [
+      "Direct code refactoring during audit (quoted separately)"
+    ],
+    deliveryEstimate: "72 hours",
+    ctaText: "Book Audit ($249)",
+    ctaLink: "/contact?tier=audit"
+  },
+  {
     id: "sprint",
-    name: "Design & Speed Sprint",
-    tagline: "Ideal for landing pages, quick audits, or UX overhauls.",
+    name: "High-Speed Web Sprint",
+    tagline: "Ideal for fast Astro sites, speed overhauls, or landing platforms.",
     price: "$1,450",
     period: "per project",
     popular: false,
-    description: "Rapid delivery of high-converting landing pages, design systems, or technical speed remediation.",
+    description: "Rapid engineering of ultra-fast static websites, Cloudflare edge caching, and 100/100 Core Web Vitals remediation.",
     features: [
-      "High-conversion Landing Page (Astro or Next.js)",
-      "Pixel-perfect responsive design (Desktop + Mobile)",
-      "Lighthouse 95+ score optimization",
-      "Cloudflare Pages 1-click deployment",
-      "Direct Slack / Discord communication channel",
-      "3-5 days rapid turnaround"
+      "Custom Astro web platform (Desktop + Mobile)",
+      "100/100 Google PageSpeed optimization",
+      "Cloudflare Pages edge deployment & SSL",
+      "Web3Forms / Lead capture integration",
+      "Direct Slack / Discord communication",
+      "100% code & Git repository handover",
+      "30-day post-launch bug warranty"
     ],
     notIncluded: [
-      "Complex backend database architecture",
-      "Custom authentication & role portals"
+      "Complex multi-tenant backend portals"
     ],
-    deliveryEstimate: "3 - 5 business days",
-    ctaText: "Start Quick Sprint",
+    deliveryEstimate: "5 - 7 business days",
+    ctaText: "Start Web Sprint",
     ctaLink: "/contact?tier=sprint"
   },
   {
     id: "mvp",
-    name: "Full MVP Launchpad",
-    tagline: "The complete package to bring your software idea to market.",
-    price: "$3,800",
+    name: "Kubernetes & Cloud DevOps Sprint",
+    tagline: "Production-ready cluster setup, GitOps pipelines, and security.",
+    price: "$2,850",
     period: "per project",
-    badge: "Most Popular",
+    badge: "Most Requested",
     popular: true,
-    description: "End-to-end full-stack product development from Figma wireframes to production deployment with auth and billing.",
+    description: "End-to-end cloud infrastructure engineering: multi-node Kubernetes clusters, ArgoCD GitOps, Trivy security, and database backup automation.",
     features: [
-      "Complete Full-Stack Application (Frontend + Backend)",
-      "Modern UI/UX Design System in Figma",
-      "User Auth, Roles & Profile Management",
-      "Stripe or LemonSqueezy payment integration",
-      "Cloudflare Pages production edge infrastructure",
-      "Automated CI/CD build pipelines & staging links",
-      "30 days post-launch warranty & bug fixes",
-      "Comprehensive video walkthrough and codebase docs"
+      "Production Kubernetes (k8s/k3s) cluster setup",
+      "ArgoCD declarative GitOps with auto-sync",
+      "GitLab CI / GitHub Actions CI/CD pipelines",
+      "Trivy container security vulnerability scanner",
+      "PostgreSQL disaster recovery & pgBackRest backups",
+      "Prometheus & Grafana monitoring dashboards",
+      "30-day post-launch operational warranty",
+      "Comprehensive infrastructure documentation"
     ],
     deliveryEstimate: "2 - 3 weeks",
-    ctaText: "Build Your MVP",
+    ctaText: "Build Cloud Stack",
     ctaLink: "/contact?tier=mvp"
   },
   {
     id: "retainer",
     name: "Dedicated Engineering Partner",
-    tagline: "Ongoing dedicated freelance engineering, feature sprints, and support.",
-    price: "$4,200",
+    tagline: "Ongoing dedicated DevOps & web capacity on monthly retainer.",
+    price: "$3,800",
     period: "per month",
     popular: false,
-    description: "Your on-demand senior engineer and product designer for continuous feature iteration, optimization, and scaling.",
+    description: "Your on-demand senior systems engineer for continuous infrastructure updates, performance tuning, and emergency incident response.",
     features: [
-      "Dedicated 20-25 engineering hours / week",
-      "Direct private Slack channel & daily standup syncs",
-      "Continuous feature rollouts & code reviews",
-      "AI & LLM feature integrations and automation flows",
-      "Proactive 24/7 uptime monitoring & security patching",
+      "Dedicated 20-25 engineering hours per week",
+      "Direct private Slack/Discord channel with Sadia",
+      "Continuous Kubernetes & server updates",
+      "Proactive 24/7 uptime monitoring & alerting",
+      "AI & n8n automation workflow builds",
       "Pause or cancel anytime with 14 days notice",
-      "Priority response within 2 hours"
+      "Priority SLA: response within 2 hours"
     ],
     deliveryEstimate: "Continuous bi-weekly sprints",
     ctaText: "Book Retainer Call",
-    ctaLink: "/contact?tier=retainer"
+    ctaLink: "https://cal.com/brevrix"
   }
 ];
-

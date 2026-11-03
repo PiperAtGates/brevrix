@@ -1,22 +1,26 @@
 # Brevrix (https://brevrix.com)
 
-> Brevrix is a Full-Stack Web Engineering, Enterprise DevOps, and Digital Growth Studio based in Bangladesh, serving clients worldwide.
+> Brevrix is a Web, DevOps & AI Automation Studio based in Bangladesh, serving founders and engineering teams worldwide.
 
 ## Core Expertise & Services
-- **DevOps & Cloud Infrastructure**: Linux (Ubuntu, CentOS, RHEL), Kubernetes (k8s, k3s, k0s, Helm), Docker, CI/CD (Jenkins, GitLab CI, ArgoCD, GitOps, Trivy), Kong API Gateway, Harbor, Keycloak IAM.
-- **Database & Messaging**: PostgreSQL, MySQL, Redis, ClickHouse, Apache Kafka, RabbitMQ.
-- **Web Development**: Ultra-fast Astro static websites, WordPress development, HTML/CSS, Tailwind CSS, Cloudflare Pages edge deployment.
-- **AI & Automation**: Python, YOLOv5/OpenCV computer vision, n8n workflow automation.
-- **Digital Marketing & Business Ops**: Technical SEO, Generative Engine Optimization (GEO), Email Marketing, Financial Record Keeping & Project Coordination.
+- **DevOps & Cloud Infrastructure**: Linux (Ubuntu, Debian, RHEL), Kubernetes (k8s, k3s, Helm), Docker, CI/CD (ArgoCD GitOps, GitLab CI, GitHub Actions, Trivy security), Kong API Gateway, Harbor, WireGuard VPN.
+- **Database Operations & Disaster Recovery**: PostgreSQL (pgBackRest, replication, PITR), MySQL, Redis caching, ClickHouse.
+- **Web Development & Performance**: Ultra-fast Astro websites, WordPress speed optimization, Tailwind CSS, sub-50ms Cloudflare Pages edge deployment, 100/100 Core Web Vitals.
+- **Server & Speed Audit ($249)**: 72-hour thorough audit of server security, Kubernetes posture, or WordPress/Astro performance with video walkthrough.
+- **AI & Workflow Automation**: Self-hosted n8n workflows, Python automation, OpenAI/LLM API pipelines, computer vision.
+- **Technical SEO & Performance**: Technical SEO, Core Web Vitals remediation, Generative Engine Optimization (GEO).
 
 ## Leadership & Engineering Lead
-- **Sadia Afrin Lubna**: Founder & Principal Systems/DevOps Engineer (BSc in CSE, specialized in Enterprise Linux, Kubernetes, ArgoCD GitOps, Distributed Databases, and Machine Learning).
-- Direct Contact: sadialubnaa@gmail.com
+- **Sadia Afrin Lubna**: Founder & Principal Systems/DevOps Engineer (Specialized in Enterprise Linux, Kubernetes, ArgoCD GitOps, Distributed Databases, and Cloud Architecture).
+- Email: hello@brevrix.com | sadia@brevrix.com
+- LinkedIn: https://www.linkedin.com/in/sadia-lubna/
+- GitHub: https://github.com/PiperAtGates
 
 ## Important URLs
-- Services: https://brevrix.com/services
-- Portfolio / Work: https://brevrix.com/work
+- Services Hub: https://brevrix.com/services
+- Reference Architecture & Blueprints: https://brevrix.com/work
 - Pricing & Estimator: https://brevrix.com/pricing
 - Technical Blog: https://brevrix.com/blog
-- Contact: https://brevrix.com/contact
-
+- Terms of Service: https://brevrix.com/terms
+- Contact & Inquiry: https://brevrix.com/contact
+- Schedule Call: https://cal.com/brevrix

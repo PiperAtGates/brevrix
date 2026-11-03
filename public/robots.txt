@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /thanks
+Disallow: /thanks/
 
 User-agent: GPTBot
 Allow: /

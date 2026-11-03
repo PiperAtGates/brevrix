@@ -8,16 +8,18 @@ interface Props {
   description?: string;
   ogImage?: string;
   currentPath?: string;
+  robots?: string;
   articleDate?: string;
   authorName?: string;
   faqItems?: { question: string; answer: string }[];
 }
 
 const {
-  title = "Brevrix | Full-Stack Web, DevOps & Digital Growth Studio",
-  description = "Brevrix delivers ultra-fast Astro & WordPress websites, enterprise Kubernetes & CI/CD DevOps architecture, AI workflow automations, and data-driven digital marketing.",
+  title = "Brevrix | Web, DevOps & AI Automation Studio",
+  description = "Brevrix builds fast Astro & WordPress sites, Kubernetes DevOps, and AI automations for founders. Fixed-price projects, full code handover, 30-day warranty.",
   ogImage = "/og-image.png",
   currentPath = Astro.url.pathname,
+  robots = "index, follow, max-image-preview:large, max-snippet:-1",
   articleDate,
   authorName = "Brevrix Engineering Team",
   faqItems = [],
@@ -36,6 +38,7 @@ const structuredData = {
       "@id": `${siteUrl}/#organization`,
       "name": "Brevrix",
       "url": siteUrl,
+      "email": "hello@brevrix.com",
       "logo": `${siteUrl}/favicon.svg`,
       "image": fullOgImage,
       "description": description,
@@ -46,21 +49,57 @@ const structuredData = {
           "@type": "Person",
           "name": "Sadia Afrin Lubna",
           "jobTitle": "Founder & Principal Systems/DevOps Engineer",
+          "email": "sadia@brevrix.com",
           "sameAs": [
             "https://www.linkedin.com/in/sadia-lubna/",
-            "https://github.com/sadia-lubna"
+            "https://github.com/PiperAtGates"
           ]
         }
       ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Brevrix Core Engineering Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Server & Speed Audit",
+              "description": "72-hour comprehensive infrastructure & web performance audit with written report."
+            },
+            "price": "249",
+            "priceCurrency": "USD"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Kubernetes & Cloud DevOps Sprint",
+              "description": "Production Kubernetes clustering, ArgoCD GitOps, and CI/CD pipelines."
+            },
+            "price": "2850",
+            "priceCurrency": "USD"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "High-Performance Web Development",
+              "description": "Modern Astro and headless WordPress engineering with 100/100 Core Web Vitals."
+            },
+            "price": "1450",
+            "priceCurrency": "USD"
+          }
+        ]
+      },
       "knowsAbout": [
         "Astro Web Development",
-        "WordPress Development",
+        "WordPress Speed Optimization",
         "Kubernetes & Docker",
-        "CI/CD Pipelines (Jenkins, GitLab CI, ArgoCD)",
-        "Linux Server Administration",
-        "Database Management (PostgreSQL, MySQL, Redis, ClickHouse)",
-        "Digital Marketing & SEO",
-        "AI & Python Automation"
+        "CI/CD Pipelines (ArgoCD, GitLab CI, GitHub Actions)",
+        "Linux Server Administration & Hardening",
+        "Database Management (PostgreSQL, Redis, MySQL)",
+        "AI & Workflow Automation (n8n, Python)"
       ]
     },
     ...(articleDate ? [{
@@ -105,7 +144,7 @@ const structuredData = {
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="robots" content={robots} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
