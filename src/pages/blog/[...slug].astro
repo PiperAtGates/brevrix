@@ -19,12 +19,17 @@ const authorBio = "Founder & Principal Systems/DevOps Engineer at Brevrix with e
 const pageTitle = post.data.title.includes('Brevrix') ? post.data.title : `${post.data.title} | Brevrix`;
 ---
 
-<Layout 
+<Layout
   title={pageTitle}
   description={post.data.description}
   articleDate={post.data.pubDate.toISOString()}
   authorName={post.data.author}
   currentPath="/blog"
+  breadcrumbs={[
+    { name: "Home", url: "/" },
+    { name: "Blog", url: "/blog/" },
+    { name: post.data.title, url: `/blog/${post.id}/` },
+  ]}
 >
   <article class="max-w-3xl mx-auto px-6 py-16">
     <div class="mb-10">

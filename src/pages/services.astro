@@ -67,7 +67,9 @@ const serviceIcons: Record<string, any> = {
                 </div>
 
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
-                  {service.title}
+                  <a href={`/services/${service.slug}/`} class="hover:text-sky-300 transition-colors">
+                    {service.title}
+                  </a>
                 </h2>
 
                 <p class="text-slate-300 text-base leading-relaxed">
@@ -145,6 +147,13 @@ const serviceIcons: Record<string, any> = {
                   >
                     <span>Inquire About {service.title}</span>
                     <ArrowRight class="w-4 h-4" />
+                  </a>
+
+                  <a
+                    href={`/services/${service.slug}/`}
+                    class="w-full py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-medium transition-all text-center block border border-white/5"
+                  >
+                    View Full Service Details
                   </a>
 
                   <a
