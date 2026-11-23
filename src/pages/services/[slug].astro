@@ -1,0 +1,349 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { servicesData, type ServiceItem } from '../../data/services';
+import { ArrowRight, CheckCircle2, Code2, Palette, Cloud, Sparkles, Zap, Smartphone, Database, FileSpreadsheet, Clock } from '@lucide/astro';
+
+export function getStaticPaths() {
+  return servicesData.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+interface Props {
+  service: ServiceItem;
+}
+
+const { service } = Astro.props;
+
+const serviceIcons: Record<string, any> = {
+  Code2,
+  Palette,
+  Cloud,
+  Sparkles,
+  Zap,
+  Smartphone,
+  Database,
+  FileSpreadsheet,
+};
+const Icon = serviceIcons[service.iconName] || Code2;
+
+// Exact title / H1 / meta description per slug — source: ~/workspace/brevrix-service-pages-draft.md
+const pageMeta: Record<string, { title: string; h1: string; description: string }> = {
+  'kubernetes-devops': {
+    title: 'Kubernetes & DevOps Consultant | Brevrix',
+    h1: 'Kubernetes & DevOps, Built for Production',
+    description: 'Production Kubernetes clusters, ArgoCD GitOps and CI/CD pipelines from Brevrix. Fixed-scope DevOps sprints, full handover, 30-day warranty. Book a call.',
+  },
+  'astro-web-development': {
+    title: 'Astro Web Developer | Fast Sites — Brevrix',
+    h1: 'Astro Websites That Load in Under a Second',
+    description: 'Astro web development on Cloudflare Pages: 100/100 PageSpeed, edge caching, full code handover. Fixed-price sprints from $1,450. Get a scoped quote.',
+  },
+  'wordpress-performance': {
+    title: 'WordPress Speed Optimization Service | Brevrix',
+    h1: 'WordPress, Made Fast — Without Breaking wp-admin',
+    description: 'WordPress speed optimization: caching, image and database tuning on Cloudflare edge. Start with the $249 Server & Speed Audit, credited to any build.',
+  },
+  'linux-server-management': {
+    title: 'Linux Server Management Service | Brevrix',
+    h1: 'Linux Servers, Hardened and Kept Online',
+    description: 'Linux server management: hardening, patching, monitoring and backups for VPS and cloud. CIS-aligned baseline, 30-day warranty, no lock-in. Book a call.',
+  },
+  'ai-automation': {
+    title: 'AI Workflow Automation for Business | Brevrix',
+    h1: 'AI Automations That Save Hours, Not Create Work',
+    description: 'AI workflow automation with n8n and LLMs: lead triage, webhook pipelines, structured extraction. Self-hosted, auditable, fixed scope. Start with a call.',
+  },
+  'database-operations': {
+    title: 'PostgreSQL & Redis Management | Brevrix',
+    h1: 'Databases That Back Up, Recover, and Stay Fast',
+    description: 'PostgreSQL and Redis operations: pgBackRest backups, point-in-time recovery, slow-query tuning. Fixed-scope work, full handover, 30-day warranty.',
+  },
+};
+
+const meta = pageMeta[service.slug];
+const isAi = service.slug === 'ai-automation';
+
+// Full body copy for ai-automation — source: ~/workspace/goals/brevrix-com-studio-site/files/ai-automation-service-page.md
+// PRICING ADAPTATION (Taj has not decided the price question): the draft priced automation as
+// scoped-in-writing with no starting figure and said a single workflow "costs far less" than a
+// full system. That contradicts the hub's $600 starting baseline in services.ts, so the Pricing
+// section below states the $600 starting baseline (final fixed price confirmed in writing) instead.
+// The draft's $249 Server & Speed Audit entry (infra/speed scope only) is kept as written.
+const aiIntro = [
+  'Small teams lose hours every week to work a machine should do: copying order details into a spreadsheet, chasing abandoned carts by hand, retyping lead details from a form into a CRM, sorting an inbox full of supplier emails and support tickets. None of that work is hard. It is just constant — and it is exactly the work that breaks first when one person is sick or one busy week hits.',
+  'Brevrix builds AI workflow automations for small businesses that remove that work without adding a new subscription, a new dashboard to babysit, or a black box nobody on your team understands. The workflows run on your own infrastructure, the logic is visible and editable, and you own everything at handover: the workflow files, the credentials map, and the documentation.',
+  'The tool we reach for most is n8n, self-hosted in Docker with a PostgreSQL database, plus a large language model where a step actually needs judgement — reading an email, extracting structured data from a document, triaging a ticket. Where a step does not need AI, we do not add AI. A webhook, a filter, and a spreadsheet row are cheaper, faster, and easier to debug than a model call, and a workflow that fails at 2 a.m. should fail in a way someone can read.',
+];
+
+const aiWhatYouGet = [
+  {
+    title: 'Abandoned-cart recovery for Shopify stores',
+    desc: 'A customer adds products to a cart and leaves. The workflow watches for that event, waits a set interval, and sends a timed reminder by email or WhatsApp — then logs the outcome to Google Sheets so you can see recovery rate instead of guessing. One reminder, not a drip campaign. The timing, the message, and the opt-out are agreed with you before anything sends, because a recovery email that reads like spam costs more than the sale it saves.',
+  },
+  {
+    title: 'Order notifications that reach a human',
+    desc: 'A new order should not sit unread in an inbox. The workflow fires on a new Shopify order and sends an alert to the owner by WhatsApp, Telegram, or email, with the order total, items, and customer details — and writes the same row to Sheets. No more refreshing the admin panel, and no more discovering an order a day late.',
+  },
+  {
+    title: 'Lead capture that does not lose leads',
+    desc: 'A form submission, a WhatsApp message, or a store enquiry becomes a structured lead: deduplicated against what you already have, tagged by source, and written to Sheets or your CRM. If the same person writes twice, you get one lead, not two. If a field is missing, the workflow flags it instead of silently dropping the row.',
+  },
+  {
+    title: 'Structured extraction from email, tickets, and documents',
+    desc: 'Where the input is messy — an emailed invoice, a PDF, a support ticket — an LLM step extracts the fields you actually need (name, amount, date, order number) into structured JSON your other tools can use. Every extraction keeps a link to the source document, so a wrong field can be traced back in seconds instead of argued about for an hour.',
+  },
+  {
+    title: 'Webhook sync between the tools you already use',
+    desc: 'Stripe events, CRM updates, Slack alerts, internal databases. The workflow moves an event from one system to another reliably, with retries and a visible error log when a destination is down. Nothing here depends on a per-task Zapier bill: self-hosted n8n has no per-run fee, which is the whole point for a small business.',
+  },
+];
+
+const aiSprintSteps = [
+  {
+    title: 'Scoping call (20 minutes)',
+    desc: 'Book via Cal.com on the contact page or email hello@brevrix.com. We map the one workflow that costs you the most time, and agree what it must do, what it must never do (for example, never message a customer twice, never write to the live CRM without a test run), and what "done" looks like.',
+  },
+  {
+    title: 'Build on test data first',
+    desc: 'The workflow is built and run end-to-end against test orders, test leads, and test messages — not your live store. You get a short screen recording of it working before it touches anything real.',
+  },
+  {
+    title: 'Handover, not lock-in',
+    desc: 'You receive the exported workflow files, a one-page runbook (what each step does, where credentials live, how to pause it), and a walkthrough call. The workflow is yours: self-hosted, auditable, and editable without us.',
+  },
+  {
+    title: 'Fix window',
+    desc: 'Delivered workflows carry a 30-day warranty: if a workflow we delivered breaks because of our build, we fix it. Changes you request after handover — a new message template, a new destination — are scoped as new work, in writing, before we start.',
+  },
+];
+
+const aiFaqs = [
+  {
+    question: 'Do I need a Shopify store for this?',
+    answer: 'No — Shopify is the most common starting point, and the cart-recovery and order-notification workflows are built for it, but the same patterns work for WooCommerce, a plain contact form, or a WhatsApp-first business. The scoping call establishes which platform you actually run on.',
+  },
+  {
+    question: 'Why self-hosted n8n instead of Zapier?',
+    answer: 'Two reasons: cost and control. Zapier charges per task, so a workflow that saves you time also grows a monthly bill. Self-hosted n8n has no per-run fee, and the workflow files live on infrastructure you control, so you can inspect, export, or move them. The trade-off is that someone has to keep the host patched and backed up — that is part of what we set up, and it is documented at handover.',
+  },
+  {
+    question: 'Will the AI make things up?',
+    answer: 'An LLM step only runs where the task needs language understanding, and its output is always constrained: extracted fields, a fixed message template, a triage label. It never invents an order total or a customer name, and every extraction links back to its source document. If a step can be done with a rule, we use a rule.',
+  },
+  {
+    question: 'What do you need from me to start?',
+    answer: 'Access to the store or form the workflow reads from, the destination it writes to (Sheets, CRM, WhatsApp number), and one example of the real input — a real order, a real lead, a real email, with personal data removed if you prefer. No live credentials change hands before the scope is agreed in writing.',
+  },
+  {
+    question: 'How long does a single workflow take?',
+    answer: 'A single workflow (cart recovery, order alerts, or lead capture) typically takes 3–7 days from an agreed scope, including test runs and the walkthrough. A full system — several workflows plus a chatbot — is scoped as a sprint, usually 1–2 weeks.',
+  },
+  {
+    question: 'What happens if it breaks after handover?',
+    answer: 'The 30-day warranty covers defects in the delivered build. After that, fixes and changes are scoped as new work. Because the workflow is self-hosted and documented, any competent n8n operator can also maintain it — you are not locked to us.',
+  },
+];
+
+const faqItems = isAi ? aiFaqs : [];
+
+// Generic process for non-AI services — wording from the site's existing offer
+// (fixed pricing in writing, staging review, full code & IP handover, 30-day warranty).
+const processSteps = [
+  { title: 'Discovery & Scope Alignment', desc: 'We define clear deliverables, milestones, and fixed pricing in writing before any work begins.' },
+  { title: 'Build & Test', desc: 'The work is built and tested against your requirements, with progress you can review as it takes shape.' },
+  { title: 'Review & Signoff', desc: 'You review the finished work and sign off before it goes live or is handed over.' },
+  { title: 'Handover & 30-Day Warranty', desc: 'Full code, configuration, and documentation transfer — covered by a 30-day post-launch warranty.' },
+];
+
+const steps = isAi ? aiSprintSteps : processSteps;
+---
+
+<Layout
+  title={meta.title}
+  description={meta.description}
+  currentPath="/services"
+  faqItems={faqItems}
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/services/' },
+    { name: service.title, url: `/services/${service.slug}/` },
+  ]}
+>
+  <!-- Page Header -->
+  <section class="py-16 md:py-24 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <nav class="flex items-center gap-2 text-xs font-mono text-slate-400 mb-8">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <a href="/services" class="hover:text-white transition-colors">Services</a>
+        <span>/</span>
+        <span class="text-indigo-400 truncate max-w-[220px] sm:max-w-md">{service.title}</span>
+      </nav>
+
+      <div class="max-w-4xl">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <Icon class="w-6 h-6" />
+          </div>
+          <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/5 text-slate-300 border border-white/10">
+            {service.badge}
+          </span>
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+          {meta.h1}
+        </h1>
+        <p class="text-slate-400 text-lg sm:text-xl mt-4 leading-relaxed">
+          {service.shortDesc}
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3 mt-8">
+          <div class="px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400 block">Starting Baseline</span>
+            <span class="text-xl font-black text-white">{service.startingPrice}</span>
+          </div>
+          <div class="px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400 block flex items-center gap-1">
+              <Clock class="w-3.5 h-3.5 text-sky-400" /> Typical Turnaround
+            </span>
+            <span class="text-xl font-black text-white">{service.turnaroundTime}</span>
+          </div>
+          <div class="px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400 block">{service.highlightStats.label}</span>
+            <span class="text-xl font-black text-emerald-400">{service.highlightStats.value}</span>
+          </div>
+          <a
+            href={`/contact?service=${service.id}`}
+            class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 hover:from-sky-400 hover:to-purple-500 text-white font-semibold text-sm transition-all duration-200 inline-flex items-center gap-2 shadow-lg shadow-indigo-500/25"
+          >
+            <span>Inquire About This Service</span>
+            <ArrowRight class="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview / Body -->
+  <section class="pb-16 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="glass-card rounded-3xl p-8 sm:p-12 border border-white/10 relative overflow-hidden">
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 max-w-4xl space-y-5">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">{service.title}</h2>
+          <p class="text-slate-300 text-base leading-relaxed">{service.longDesc}</p>
+          {isAi && aiIntro.map((para) => (
+            <p class="text-slate-300 text-base leading-relaxed">{para}</p>
+          ))}
+        </div>
+
+        {isAi && (
+          <div class="relative z-10 max-w-4xl mt-12 space-y-8">
+            <h3 class="text-xl sm:text-2xl font-bold text-white">What You Get</h3>
+            {aiWhatYouGet.map((item, i) => (
+              <div>
+                <h4 class="text-base font-semibold text-white">{i + 1}. {item.title}</h4>
+                <p class="text-slate-400 text-sm sm:text-base leading-relaxed mt-2">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <!-- Deliverables -->
+        <div class="relative z-10 mt-12">
+          <h3 class="text-xs font-mono uppercase tracking-wider text-indigo-400 mb-4">What You Receive (Deliverables):</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {service.deliverables.map((deliv) => (
+              <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+                <div class="flex items-center gap-2 text-sm font-semibold text-white">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                  <span>{deliv.title}</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-1 pl-6">{deliv.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Tech stack -->
+        <div class="relative z-10 mt-10">
+          <span class="text-xs font-mono uppercase tracking-wider text-slate-500 block mb-2">Technologies Used:</span>
+          <div class="flex flex-wrap gap-2">
+            {service.techStack.map((tech) => (
+              <span class="text-xs font-mono px-3 py-1 rounded-lg bg-white/[0.04] text-slate-300 border border-white/5">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {service.slug === 'kubernetes-devops' && (
+          <p class="relative z-10 text-sm text-slate-400 leading-relaxed mt-10">
+            Go deeper: read our engineering guide on
+            <a href="/blog/kubernetes-argocd-gitops-guide/" class="text-sky-400 hover:text-sky-300 underline underline-offset-2">setting up zero-downtime GitOps pipelines with Kubernetes and ArgoCD</a>.
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="pb-16 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-8">{isAi ? 'How a Sprint Runs' : 'How It Works'}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {steps.map((step, i) => (
+          <div class="glass-card rounded-2xl p-6 border border-white/10">
+            <div class="text-xs font-mono text-indigo-400 mb-2">{String(i + 1).padStart(2, '0')}</div>
+            <h3 class="text-base font-semibold text-white mb-2">{step.title}</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      {isAi && (
+        <div class="max-w-4xl mt-12 space-y-5">
+          <h3 class="text-xl sm:text-2xl font-bold text-white">Who Builds It</h3>
+          <p class="text-slate-300 text-base leading-relaxed">
+            Brevrix is a two-person studio. Sadia Afrin Lubna leads DevOps and systems — Linux, Kubernetes, and the self-hosted infrastructure these workflows run on. Taj (Tanvir Ahmed) handles web, automation, and client operations. There is no account-manager layer: the people who scope the workflow are the people who build it.
+          </p>
+          <h3 class="text-xl sm:text-2xl font-bold text-white pt-4">Pricing</h3>
+          <p class="text-slate-300 text-base leading-relaxed">
+            AI workflow automation starts at a $600 starting baseline. The final scope and fixed price are confirmed in writing before work starts, with a delivery date and a list of what is included and excluded. There is no hourly meter running in the background.
+          </p>
+          <p class="text-slate-300 text-base leading-relaxed">
+            Where server or site speed is part of the job, start with the <strong class="text-white">Server &amp; Speed Audit — $249, 72 hours</strong>: a written report plus a Loom walkthrough, with the fee credited toward any project booked within 14 days.
+          </p>
+          <p class="text-slate-300 text-base leading-relaxed">
+            Payment for direct contracts is via Payoneer or bank transfer. Larger projects route through the same <a href="/contact/" class="text-sky-400 hover:text-sky-300 underline underline-offset-2">contact page</a>, and the <a href="/pricing/" class="text-sky-400 hover:text-sky-300 underline underline-offset-2">pricing page</a> lists the fixed-price sprints and retainer.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- FAQ (only where source data exists — currently ai-automation, from its page draft) -->
+  {faqItems.length > 0 && (
+    <section class="pb-16 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-8">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqItems.map((item) => (
+              <div class="glass-card rounded-2xl p-6 border border-white/10">
+                <h3 class="text-base font-semibold text-white">{item.question}</h3>
+                <p class="text-sm text-slate-400 leading-relaxed mt-2">{item.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Bottom CTA Banner -->
+  <CtaBanner />
+</Layout>

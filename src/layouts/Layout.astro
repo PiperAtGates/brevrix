@@ -12,6 +12,7 @@ interface Props {
   articleDate?: string;
   authorName?: string;
   faqItems?: { question: string; answer: string }[];
+  breadcrumbs?: { name: string; url: string }[];
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   articleDate,
   authorName = "Brevrix Engineering Team",
   faqItems = [],
+  breadcrumbs = [],
 } = Astro.props;
 
 const siteUrl = 'https://brevrix.com';
@@ -126,6 +128,15 @@ const structuredData = {
           "@type": "Answer",
           "text": item.answer
         }
+      }))
+    }] : []),
+    ...(breadcrumbs.length > 0 ? [{
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbs.map((crumb, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": crumb.name,
+        "item": crumb.url.startsWith('http') ? crumb.url : new URL(crumb.url, siteUrl).toString()
       }))
     }] : [])
   ]
