@@ -13,6 +13,10 @@ const blog = defineCollection({
     authorRole: z.string().default("Founder & Principal Systems Engineer"),
     category: z.string().default("DevOps & Engineering"),
     heroImage: z.string().optional(),
+    faq: z.array(z.object({
+      question: z.string(),
+      answer: z.string(),
+    })).optional(), // emitted as FAQPage schema via Layout faqItems
   }),
 });
 

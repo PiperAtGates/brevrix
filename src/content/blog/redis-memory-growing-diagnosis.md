@@ -6,6 +6,15 @@ pubDate: 2026-11-24
 author: "Sadia Afrin Lubna"
 authorRole: "Founder & Principal Systems/DevOps Engineer"
 category: "Databases"
+faq:
+  - question: "Why does the OS report more memory than used_memory?"
+    answer: "Because used_memory_rss includes fragmented pages the allocator has not returned, copy-on-write pages during persistence forks, and buffers. A ratio (mem_fragmentation_ratio) around 1.0 to 1.5 is normal; sustained values well above that, outside a fork window, are worth investigating with the steps above."
+  - question: "Is a high mem_fragmentation_ratio always a problem?"
+    answer: "No. It is expected during and shortly after BGSAVE or AOF rewrites, and on workloads with many expirations. It is a problem when it stays high, keeps climbing, and the host or container limit is close enough that the gap between RSS and the limit disappears."
+  - question: "Should every key have a TTL?"
+    answer: "No. Durable data should not expire. Every category of key should have a deliberate answer, though: this namespace expires, this one is capped, this one is durable and monitored. Incidents come from namespaces nobody made a decision about."
+  - question: "We set maxmemory and now writes are failing. What happened?"
+    answer: "Your policy is noeviction (or a volatile-* policy with too few expirable keys), and the dataset reached the limit. That is the policy working as configured. Free space by fixing the growth cause or expiring the right backlog. If this instance is a cache, switch to allkeys-lfu so Redis can evict instead of refusing."
 ---
 
 The alert says Redis is at 90% memory. Someone suggests restarting it. That is the worst first move available: a restart throws away the evidence and empties the cache. If the growth comes from your own application's write pattern, it also buys you exactly as long as it takes that pattern to refill it.

@@ -6,6 +6,15 @@ pubDate: 2026-11-24
 author: "Sadia Afrin Lubna"
 authorRole: "Founder & Principal Systems/DevOps Engineer"
 category: "Web Development"
+faq:
+  - question: "Is Astro only for small sites?"
+    answer: "No. The static model scales by adding pages, not by adding runtime. Large documentation and content sites run on Astro precisely because build-time rendering does not care how many pages there are. The constraint is not size; it is interactivity. A huge site of readable pages fits Astro; a small site that behaves like an application does not."
+  - question: "Can a Next.js site be just as fast?"
+    answer: "A disciplined one can get close on a simple page: static export, minimal client components, no unnecessary libraries. The difference is the default and the floor: Next.js starts with a runtime you must actively minimise, Astro starts at zero and you add deliberately. Teams that will do the minimising work can choose either; teams that will not should choose the tool whose default is the outcome they want."
+  - question: "What about WordPress: should we skip both?"
+    answer: "Possibly. If the site exists, the content is in WordPress, and the problem is speed or security rather than the platform itself, fixing the WordPress install is often the cheapest correct answer. Migrate when the platform itself is the problem: maintenance burden, a redesign, a team that has moved on."
+  - question: "Does the framework choice affect SEO rankings directly?"
+    answer: "No search engine ranks \"Astro\" above \"Next.js.\" What affects rankings is what visitors and crawlers experience: fast, stable pages on real devices, correct metadata, and content that answers the query. Framework choice matters only through those effects, which is why the weight and maintenance sections above matter more than any feature list."
 ---
 
 Most framework comparisons are written for web applications. This one is narrower, on purpose: you have a business site (a homepage, service pages, a blog, a few landing pages, a contact form) and you are choosing between Astro and Next.js to build it. The two tools overlap heavily in marketing copy and very little in what they actually deliver to a visitor's browser, and for this class of site that difference is the decision.

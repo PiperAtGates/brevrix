@@ -6,6 +6,15 @@ pubDate: 2026-11-24
 author: "Sadia Afrin Lubna"
 authorRole: "Founder & Principal Systems/DevOps Engineer"
 category: "Web Performance"
+faq:
+  - question: "Will these rules break WooCommerce checkout?"
+    answer: "Not if Rules 1 and 2 stay above Rule 3. Checkout, cart, and account pages bypass by path, and any request carrying WooCommerce session cookies bypasses by cookie. Verify with the two-browser test and a full test checkout before considering it done. \"The rules look right\" is not verification."
+  - question: "Do I still need a WordPress caching plugin?"
+    answer: "Yes, but for a different layer. Cloudflare caches at the edge for visitors; a plugin (or server-level page cache) generates the page efficiently at the origin on a cache miss and handles things Cloudflare cannot: object cache, database transients, minification. The layers complement each other; neither replaces the other."
+  - question: "Why is my page still a MISS after several loads?"
+    answer: "Common causes: the response sets a cookie (see the Set-Cookie check), the origin sends Cache-Control: no-cache or private and your edge TTL is set to respect origin headers, you are logged in or carrying a commenter cookie in that browser, or the URL has a query parameter that is not excluded, making every visit a unique key. The cf-cache-status header plus a look at the response's Cache-Control and Set-Cookie headers will identify which."
+  - question: "Should I migrate my old Page Rules instead of starting fresh?"
+    answer: "If your Page Rules work and are verified, they keep working, but write any new behaviour as Cache Rules, and migrate deliberately when you touch the setup, re-testing order and bypasses afterwards. Running both systems long-term with overlapping intent is how contradictory configurations happen."
 ---
 
 Put a default WordPress site behind Cloudflare and one of two things usually happens. Either the cache barely engages: Cloudflare serves your static files from the edge, but every page view still travels back to your origin for the HTML, so the site feels exactly as slow as before. Or someone adds a "cache everything" rule, traffic spikes look great for a day, and then a logged-in customer sees another customer's account page, the checkout misbehaves, or an editor's changes never appear. Both outcomes come from the same root cause: the rules were written without separating *who* the request is for.
