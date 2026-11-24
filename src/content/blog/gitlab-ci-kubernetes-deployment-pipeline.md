@@ -6,6 +6,15 @@ pubDate: 2026-11-24
 author: "Sadia Afrin Lubna"
 authorRole: "Founder & Principal Systems/DevOps Engineer"
 category: "DevOps & Kubernetes"
+faq:
+  - question: "Does --atomic make deployments zero-downtime?"
+    answer: "No. --atomic decides what happens when an upgrade fails: the release rolls back instead of sitting half-applied. Availability during a normal rollout comes from running more than one replica, honest readiness probes, and PodDisruptionBudgets. With replicaCount: 1, there is a gap during every deploy no matter which flags you set."
+  - question: "Kaniko or Docker-in-Docker for the build step?"
+    answer: "Kaniko builds images with no Docker daemon and no privileged mode, which is why it works on locked-down runners where Docker-in-Docker is refused. If your runners are self-managed and already privileged, DinD works too, but the SHA-tagging and build-once rules matter more than the builder. Do not let the deploy stages rebuild the image; they must deploy the artifact the build stage produced."
+  - question: "A release is stuck in pending-upgrade. What now?"
+    answer: "An interrupted deploy (the job was cancelled, or the runner died mid-upgrade) leaves the release marked pending, and further upgrades refuse to start. Check helm history, then roll back to the last revision with status deployed: helm rollback api <revision> --namespace api-production. Prevent it with the resource_group serialization above and by not cancelling deploy jobs casually."
+  - question: "Can I keep this pipeline and still use ArgoCD?"
+    answer: "Yes. Split the jobs at the build. CI builds and pushes the SHA-tagged image, then commits the new tag to the GitOps repository; ArgoCD reconciles the cluster from there and the Helm deploy jobs go away. You keep immutable tags and the manual promotion discipline (the tag commit to the production folder is the gate), and ArgoCD adds drift correction on top."
 ---
 
 The first version of this pipeline is always the same: a deploy job with a kubeconfig stored as a CI variable, running `kubectl apply -f k8s/` and maybe a `kubectl set image`. It works until the first bad deploy. Then its three structural problems show up at once:

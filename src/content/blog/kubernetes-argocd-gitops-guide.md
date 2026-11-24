@@ -7,6 +7,13 @@ updatedDate: 2026-11-04
 author: "Sadia Afrin Lubna"
 authorRole: "Founder & Principal Systems/DevOps Engineer"
 category: "DevOps & Kubernetes"
+faq:
+  - question: "What is the difference between ArgoCD and Flux?"
+    answer: "Both are CNCF graduated GitOps engines. ArgoCD provides a full web UI, granular RBAC, SSO integration, and visual cluster synchronization trees. Flux is a collection of decoupled, lightweight Kubernetes controllers managed purely via CLI and CRDs. For small teams requiring visual observability, ArgoCD is overwhelmingly preferred."
+  - question: "How do you handle database migrations in a GitOps workflow?"
+    answer: "Never run schema migrations inside your primary web container's entrypoint script. Instead, execute schema migrations as a Kubernetes Job orchestrated through an ArgoCD PreSync Hook: This guarantees that the database migration completes successfully before ArgoCD begins rolling out the new application pods."
+  - question: "How do you keep Kubernetes secrets safe in a public Git repository?"
+    answer: "Never commit unencrypted secrets to Git. We recommend either: Sealed Secrets (Bitnami): Public-key encryption where only your Kubernetes cluster can decrypt the secret. External Secrets Operator (ESO): Synchronizes secrets directly from AWS Secrets Manager, HashiCorp Vault, or Google Secret Manager into standard Kubernetes secrets. ---"
 ---
 
 Deploying microservices to Kubernetes should not feel like gambling on a roulette wheel. In fast-moving development teams, the traditional "push-based" CI/CD pipeline—where a continuous integration runner like GitLab CI or Jenkins executes `kubectl apply` directly against the cluster—inevitably leads to configuration drift, orphaned resources, and critical production outages.

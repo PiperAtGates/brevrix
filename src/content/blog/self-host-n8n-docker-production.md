@@ -6,6 +6,15 @@ pubDate: 2026-11-24
 author: "Sadia Afrin Lubna"
 authorRole: "Founder & Principal Systems/DevOps Engineer"
 category: "AI & Automation"
+faq:
+  - question: "Can I migrate an existing SQLite instance to PostgreSQL later?"
+    answer: "Yes. n8n provides export and import commands for workflows and credentials, and the documented path is to export from the old instance, start the new one on PostgreSQL with the same encryption key, and import. It is far easier to start on PostgreSQL, which is why the production compose file does."
+  - question: "Does n8n need Redis or queue mode to be \"production\"?"
+    answer: "Not at small scale. Queue mode with workers is for high execution volume and horizontal scaling. A single instance on PostgreSQL, pruned and backed up, is a legitimate production setup for most small teams; add queue mode when you can point at the load that requires it, not before."
+  - question: "How much disk should I plan for execution data?"
+    answer: "It depends entirely on payload size and workflow frequency, which is exactly why pruning with a retention window matters more than the initial disk size. Set EXECUTIONS_DATA_MAX_AGE, watch volume growth for the first few weeks, and size from your own data."
+  - question: "Is the free self-hosted version enough, or do I need a paid licence?"
+    answer: "For core workflow automation, the self-hosted Community edition covers most small-team needs. Paid tiers add features such as advanced collaboration, SSO, and extended execution-data tooling. Evaluate against the specific feature list when a concrete need appears, rather than paying pre-emptively or assuming a needed feature is free."
 ---
 
 The official n8n quick-start gets you a running editor in minutes, and for trying the tool out that is exactly what it should do. The problem is that the same compose file ends up as the production deployment: the demo that never got replaced. When that happens, the setup is wrong in five specific ways:

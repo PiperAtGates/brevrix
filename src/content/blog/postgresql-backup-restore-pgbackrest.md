@@ -6,6 +6,15 @@ pubDate: 2026-11-24
 author: "Sadia Afrin Lubna"
 authorRole: "Founder & Principal Systems/DevOps Engineer"
 category: "Databases"
+faq:
+  - question: "Can pgBackRest use only S3, with no local repository?"
+    answer: "Yes. A single S3 repository is a valid configuration, and many small setups run exactly that. The local repo in this guide earns its place on restore speed and on having a copy that does not depend on network or a cloud account being reachable during an incident. If you keep one repo, keep the off-server one."
+  - question: "Should I stop using pg_dump entirely?"
+    answer: "No. PITR restores a whole cluster to a point in time; it cannot hand you one table as SQL. Keep an occasional pg_dump for portability: major-version upgrades, moving a single database to another system, long-term archival in a format you can read without pgBackRest. The two tools answer different questions."
+  - question: "Differential or incremental for the daily job?"
+    answer: "Differential backups grow through the week (each one contains everything since Sunday's full) but restore needs only the full plus the latest differential. Incrementals stay small but restore replays the whole chain. For most databases the differential's simpler, shorter restore wins; switch to incremental when the daily differential's size becomes a real storage or time problem."
+  - question: "What if I need one table back, not the whole cluster?"
+    answer: "Restore the cluster to a scratch server using the PITR procedure above, then extract the table with pg_dump -t or a COPY from the scratch instance and load it into production. This is slower than a logical backup of that table would have been, which is exactly why the previous answer keeps pg_dump in the toolkit."
 ---
 
 `pg_dump` is the first backup tool every PostgreSQL user learns, and for a small database it is genuinely fine. It stops being fine quietly. There is no point-in-time recovery: you get the database as it was when the dump started, and everything after that is gone. There is no incremental mode: a large database is copied in full every night. And the restore is a replay of SQL statements, so recovery time grows with the data. The biggest databases are the slowest to get back.

@@ -6,6 +6,15 @@ pubDate: 2026-11-24
 author: "Sadia Afrin Lubna"
 authorRole: "Founder & Principal Systems/DevOps Engineer"
 category: "DevOps & Kubernetes"
+faq:
+  - question: "What is the difference between OutOfSync, Sync Failed, and Degraded?"
+    answer: "OutOfSync is a sync status: live state differs from Git. Sync Failed means the last sync operation itself errored (apply rejected, hook failed, manifests would not render). Degraded is a health status: resources applied, but the workload is not running properly. Fix them in that order."
+  - question: "Will argocd app sync --prune delete resources I created manually?"
+    answer: "Prune deletes resources ArgoCD tracks as part of the application that no longer exist in Git. A hand-created resource in the same namespace is not automatically part of the application, but if ArgoCD has taken ownership of it through its tracking, it can be pruned. Protect anything that must survive with the Prune=false sync option (cause 7), and check the sync preview first."
+  - question: "A sync operation is stuck and new syncs will not start. What do I do?"
+    answer: "Terminate the stuck operation (argocd app terminate-op my-app), then read the recorded failure with argocd app get my-app before retrying. Retrying blind just reproduces the same failure. If operations stick repeatedly at the same resource, it is almost always one of the seven causes above, usually a hook that never completes or an unhealthy early-wave resource."
+  - question: "Should I fix a failed sync with kubectl directly in the cluster?"
+    answer: "Only to diagnose, and to unblock in the narrow cases above (deleting a stuck Job). With selfHeal enabled, ArgoCD reverts manual changes not in Git; without it, you have still created drift the next sync must resolve. The actual change goes in Git."
 ---
 
 Your Git commit landed, ArgoCD picked it up, and the application went red: Sync Failed. That status is the end state of a whole operation, and the operation can break at several points: manifest generation, the dry run, the apply, or the wait for hooks and health checks. A fix aimed at the wrong stage changes nothing.

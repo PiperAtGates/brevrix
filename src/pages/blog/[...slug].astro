@@ -24,6 +24,7 @@ const pageTitle = post.data.title.includes('Brevrix') ? post.data.title : `${pos
   description={post.data.description}
   articleDate={post.data.pubDate.toISOString()}
   authorName={post.data.author}
+  faqItems={post.data.faq ?? []}
   currentPath="/blog"
   breadcrumbs={[
     { name: "Home", url: "/" },

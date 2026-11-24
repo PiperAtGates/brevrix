@@ -6,6 +6,15 @@ pubDate: 2026-11-24
 author: "Sadia Afrin Lubna"
 authorRole: "Founder & Principal Systems/DevOps Engineer"
 category: "Linux & Servers"
+faq:
+  - question: "Is changing the SSH port worth it?"
+    answer: "It reduces automated noise in your logs, which has some value, but it does nothing against a targeted attempt and can complicate firewall rules and team access. Do it if you like quiet logs; do not count it as a hardening step."
+  - question: "Should I disable IPv6 if I do not use it?"
+    answer: "If the server genuinely has no IPv6, disabling it removes a class of \"forgotten firewall\" mistakes. An open IPv6 listener behind an IPv4-only firewall is a real and common failure. If you disable it, disable it fully (including in the firewall policy); if you use it, firewall it with the same default-deny rules as IPv4."
+  - question: "How often should I re-run this checklist?"
+    answer: "After any major change (new services, new team members with access, OS upgrade), and on a fixed quarterly review for patching, accounts, and listening ports. Settings drift as people change things; the review catches the drift."
+  - question: "What is the minimum viable version of this for a side project?"
+    answer: "Steps 1 to 6: named sudo user, key-only SSH, default-deny firewall, fail2ban, automatic security updates, and no unused services. That is under an hour and removes the overwhelming majority of opportunistic attacks."
 ---
 
 A fresh VPS comes with defaults chosen for convenience. Automated scanners probe new IP addresses quickly and continuously, and a default install gives them plenty to work with: password-based SSH on port 22, root login enabled, no firewall, services listening that you never asked for, and no automatic patching. Most compromises of small servers are not sophisticated. They walk through doors that were left at factory settings.
