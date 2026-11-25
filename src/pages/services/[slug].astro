@@ -147,7 +147,124 @@ const aiFaqs = [
   },
 ];
 
-const faqItems = isAi ? aiFaqs : [];
+// FAQ sections for the non-AI services, written from the service data in
+// src/data/services.ts (prices, turnaround, tech stack, deliverables, warranty).
+// ai-automation reuses the aiFaqs above, from its page draft.
+const serviceFaqs: Record<string, { question: string; answer: string }[]> = {
+  'ai-automation': aiFaqs,
+  'kubernetes-devops': [
+    {
+      question: 'Do you build new clusters, or can you fix one we already run?',
+      answer: 'Both. A new cluster gets built from scratch with ArgoCD and CI wired in from the start. An existing one gets audited first, then the problems found get fixed in priority order, so you are not paying to rebuild what already works.',
+    },
+    {
+      question: 'What happens when a deploy goes wrong?',
+      answer: 'ArgoCD keeps the cluster synced to Git, so a bad deploy rolls back to the last known good state from the repository. Failed deploys also surface in the Prometheus and Grafana alerts, so the problem is visible instead of silent.',
+    },
+    {
+      question: 'How do you handle zero-downtime deploys?',
+      answer: 'Pipelines run through ArgoCD and GitLab CI with rolling updates, and Trivy scans images before they ship. Traffic moves to the new version once health checks pass, so the old version keeps serving until the new one is ready.',
+    },
+    {
+      question: 'What do I own when the work is done?',
+      answer: 'The cluster, the Git repositories holding every manifest and pipeline definition, the monitoring setup, and the documentation. There is no lock-in, and the work carries a 30-day warranty.',
+    },
+    {
+      question: 'How long does a typical engagement take?',
+      answer: 'Three to ten days, depending on scope. The fixed price and the delivery date are agreed in writing before work starts.',
+    },
+  ],
+  'astro-web-development': [
+    {
+      question: 'Will my site really hit 100/100 on Lighthouse?',
+      answer: 'Static routes ship with no client-side JavaScript bloat, and that is what gets the 100/100 Lighthouse score. Anything added after handover, like a chat widget or an analytics script, can pull the number down, so we point those out before handover.',
+    },
+    {
+      question: 'Can I update content myself after launch?',
+      answer: 'Yes. Content goes through a headless WordPress setup or a Git-based CMS, so editing a page does not mean editing code.',
+    },
+    {
+      question: 'What do I get at handover?',
+      answer: 'The full codebase in a GitHub repository transferred to you, deployed on Cloudflare Pages with edge caching and TLS 1.3, plus a 30-day bug warranty.',
+    },
+    {
+      question: 'What if a page needs real interactivity?',
+      answer: 'React islands handle the parts that need JavaScript, like a form or a calculator. The rest of the page stays static, so one interactive section does not slow down the whole site.',
+    },
+    {
+      question: 'How long does a build take?',
+      answer: 'One to two weeks for a typical site. The fixed price is agreed in writing before work starts.',
+    },
+  ],
+  'wordpress-performance': [
+    {
+      question: 'Will caching break wp-admin?',
+      answer: 'No. Cloudflare cache rules are set up to serve pages from the edge while leaving wp-admin untouched, so editing and publishing keep working the way they do now.',
+    },
+    {
+      question: 'How much faster will my site get?',
+      answer: 'It depends on what is slow. The audit finds the actual bottleneck first: bloated database queries, uncached pages, or oversized images. The target is up to 3x faster, but the real number depends on what the audit finds, and you see that before any work starts.',
+    },
+    {
+      question: 'What does the $249 Server & Speed Audit cover?',
+      answer: 'A written report plus a Loom walkthrough, delivered in 72 hours. It covers TTFB, database bloat, caching, and security gaps, and the fee is credited toward any build booked within 14 days.',
+    },
+    {
+      question: 'Do I need to move hosts?',
+      answer: 'Usually not. The tuning happens on your current stack: Redis object cache, database cleanup, Cloudflare edge rules, and asset minification. A host move only comes up if the server itself is the bottleneck, and that is a decision made with you, not for you.',
+    },
+    {
+      question: 'What security fixes are included?',
+      answer: 'XML-RPC gets disabled, login rate limits go on, and two-factor authentication is set up. That covers the automated brute-force attempts that hit most WordPress sites every day.',
+    },
+  ],
+  'linux-server-management': [
+    {
+      question: 'Will hardening lock me out of my own server?',
+      answer: 'No. SSH moves to ed25519 key-only authentication with root login disabled, and you get the keys and the documentation at handover. The port change and firewall rules are written down, so access is recorded instead of guessed at.',
+    },
+    {
+      question: 'What happens if someone tries to break in?',
+      answer: 'Fail2ban watches login attempts and bans IPs that keep failing, and UFW only leaves open the ports the server actually needs. Automatic security patching applies fixes as they are released, so known vulnerabilities do not stay open.',
+    },
+    {
+      question: 'Do you set up new servers, or harden ones already running?',
+      answer: 'Both. A fresh VPS gets the full baseline from the start, and a running server gets audited against the CIS benchmark first, then brought up to it.',
+    },
+    {
+      question: 'How are backups handled?',
+      answer: 'Daily encrypted snapshots rotate to S3-compatible cloud storage automatically, so a failed server restores from the most recent snapshot.',
+    },
+    {
+      question: 'How long does it take?',
+      answer: 'Two to four days for a typical VPS. Scope and fixed price are agreed in writing first.',
+    },
+  ],
+  'database-operations': [
+    {
+      question: 'How do I know my backups actually work?',
+      answer: 'Backups are not trusted on faith. Scheduled restore drills run against them, so a backup that cannot restore is found during a drill, while there is still time to fix it.',
+    },
+    {
+      question: 'How fast can you bring my database back?',
+      answer: 'The recovery target is under 15 minutes for a configured setup, using continuous WAL archiving and point-in-time recovery through pgBackRest. The exact time depends on database size, and the drill results give you the real number for your data.',
+    },
+    {
+      question: 'Do you work with MySQL, or only PostgreSQL?',
+      answer: 'PostgreSQL is the main focus, but MySQL, Redis, and ClickHouse are in scope too. The same backup, tuning, and recovery practices apply across them.',
+    },
+    {
+      question: 'What does a health audit look at?',
+      answer: 'Slow queries, locking issues, and connection leaks, plus memory allocation and indexing. The audit produces a list of fixes in priority order instead of a generic report.',
+    },
+    {
+      question: 'What do I get at handover?',
+      answer: 'A tuned database with PgBouncer connection pooling, pgBackRest backups with WAL archiving, restore drill scripts, and documentation. The work carries a 30-day warranty.',
+    },
+  ],
+};
+
+const faqItems = serviceFaqs[service.slug] ?? [];
 
 // Generic process for non-AI services — wording from the site's existing offer
 // (fixed pricing in writing, staging review, full code & IP handover, 30-day warranty).
@@ -325,7 +442,7 @@ const steps = isAi ? aiSprintSteps : processSteps;
     </div>
   </section>
 
-  <!-- FAQ (only where source data exists — currently ai-automation, from its page draft) -->
+  <!-- FAQ — from serviceFaqs above (ai-automation from its page draft, others from service data) -->
   {faqItems.length > 0 && (
     <section class="pb-16 relative z-10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
